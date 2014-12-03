@@ -19,6 +19,13 @@ class LEDGrid:
       bytes.append(0x00)
       self.i2c.writeList(0x00,bytes)
 
+  def setBrightness(self,brightness):
+    self.i2c.write8(0xe0|brightness,0x00)
+
+  def printHex(self,c):
+    for x in c:
+      print '0x{0:0=2x}'.format(x)
+
   @staticmethod
   def flipX(c):
     result=[0,0,0,0,0,0,0,0]
