@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
-import datetime,time
+import time
 from LEDGrid import LEDGrid
+from datetime import datetime
 
 def scrollMessage(message,font):
     print message
@@ -14,6 +15,54 @@ def demo(message='',font=None,delay=1):
     for m in message:
         grid.showChar(font[m])
         time.sleep(delay)
+
+def merge(words):
+    char=[0,0,0,0,0,0,0,0]
+    for w in words:
+        for x in range(0,8):
+            char[x]=char[x] | w[x]
+    return char
+        
+
+def showTime(font=None):
+    words=[]
+    now=datetime.now()
+    hour=now.hour
+    minute=now.minute
+    if minute>=5 and minute <10:
+        words=['m_5','past']
+    elif minute>=10 and minute <15:
+        words=['m_10','past']
+    elif minute>=15 and minute <20:
+        words=['m_15','past']
+    elif minute>=20 and minute <25:
+        words=['m_20','past']
+    elif minute>=25 and minute <30:
+        words=['m_25','past']
+    elif minute>=30 and minute <35:
+        words=['m_30','past']
+        print 'half past'
+    elif minute>=35 and minute <40:
+        words=['m_25','to']
+    elif minute>=40 and minute <45:
+        words=['m_20','to']
+    elif minute>=45 and minute <50:
+        words=['m_15','to']
+    elif minute>=50 and minute <55:
+        words=['m_10','to']
+    elif minute>=55 and minute <60:
+        words=['m_5','to']
+    if hour>12:
+        hour-=12
+    if hour==0:
+        hour=12
+    words.append('h_'+str(hour))
+    chars=[]
+    for w in words:
+        chars.append(font[w])
+    grid.showChar(merge(chars))
+
+        
         
 
 grid=LEDGrid(address=0x70,debug=False)
@@ -53,5 +102,7 @@ rotateFontCCW(clockFont1)
 ##grid2=LEDGrid(address=0x71,debug=False)
 ##grid2.showChar(invader1)
 ##grid2.setBrightness(1)
+##demo(['past','to','h_1','h_2','h_3','h_4','h_5','h_6','h_7','h_8','h_9','h_10','h_11','h_12','m_5','m_10','m_15','m_20','m_25','m_30'],clockFont1,0.25)
 while True:
-    demo(['past','to','h_1','h_2','h_3','h_4','h_5','h_6','h_7','h_8','h_9','h_10','h_11','h_12','m_5','m_10','m_15','m_20','m_25','m_30'],clockFont1,0.25)
+    showTime(clockFont1)
+    
