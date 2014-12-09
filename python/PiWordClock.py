@@ -41,22 +41,27 @@ def showTime(font=None):
         words=['m_25','past']
     elif minute>=30 and minute <35:
         words=['m_30','past']
-        print 'half past'
     elif minute>=35 and minute <40:
+        hour+=1
         words=['m_25','to']
     elif minute>=40 and minute <45:
+        hour+=1
         words=['m_20','to']
     elif minute>=45 and minute <50:
+        hour+=1
         words=['m_15','to']
     elif minute>=50 and minute <55:
+        hour+=1
         words=['m_10','to']
     elif minute>=55 and minute <60:
+        hour+=1
         words=['m_5','to']
     if hour>12:
         hour-=12
     if hour==0:
         hour=12
     words.append('h_'+str(hour))
+    #words=['m_20','past','h_10']
     chars=[]
     for w in words:
         chars.append(font[w])
