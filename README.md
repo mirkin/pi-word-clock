@@ -10,7 +10,7 @@ My 7 and 8yr old kids wanted to get started with electronics and programming,
 Code & Images for making Word Clocks included. We used Raspberry Pi and 8x8 matrix.
 Code is Python & will possibly add a C version.
 
-Template inspired by https://www.youtube.com/watch?v=9ko9CeylUTs
+Template inspired by Daniel Rojas https://github.com/formatc1702/Micro-Word-Clock
 
 Starting with an Adafruit LED backpack via I2C may support others soon.
 
