@@ -1,8 +1,9 @@
 #!/usr/bin/python
 
-import time
+import time,os,datetime,sys,getopt,argparse
 from LEDGrid import LEDGrid
-from datetime import datetime
+#from datetime import datetime,time,timedelta,date
+
 
 def scrollMessage(message,font):
     print message
@@ -22,11 +23,27 @@ def merge(words):
         for x in range(0,8):
             char[x]=char[x] | w[x]
     return char
-        
 
-def showTime(font=None):
+def demoAllTimes(font=None,grid=None,delay=0.5):
+    for m in range(0,720,5):
+        tempTime= datetime.datetime.combine(datetime.date.today(),datetime.time(1,0,0))+datetime.timedelta(minutes=m)
+        showTime(font,grid,tempTime)
+        time.sleep(delay)
+
+def demoQuick(font=None,grid=None,delay=1):
+    for m in range(0,720,65):
+        tempTime= datetime.datetime.combine(datetime.date.today(),datetime.time(1,0,0))+datetime.timedelta(minutes=m)
+        showTime(font,grid,tempTime)
+        time.sleep(delay)
+
+def demoTimeList(font=None,grid=None,delay=1,times=[[1,5],[2,10],[3,15],[4,30],[4,35],[5,40],[6,45],[7,50],[8,55],[9,0],[10,5],[11,15],[12,30]]):
+    for t in times:
+        tempTime= datetime.datetime.combine(datetime.date.today(),datetime.time(t[0],t[1],0))
+        showTime(font,grid,tempTime)
+        time.sleep(delay)
+
+def showTime(font=None,grid=None,now=datetime.datetime.now()):
     words=[]
-    now=datetime.now()
     hour=now.hour
     minute=now.minute
     if minute>=5 and minute <10:
@@ -66,8 +83,6 @@ def showTime(font=None):
     for w in words:
         chars.append(font[w])
     grid.showChar(merge(chars))
-
-        
         
 
 grid=LEDGrid(address=0x70,debug=False)
@@ -115,8 +130,18 @@ clockFont1={
 rotateFontCCW(clockFont1)
 ##grid2=LEDGrid(address=0x71,debug=False)
 ##grid2.showChar(invader1)
-##grid2.setBrightness(1)
+##grid2.setBrightness(0)
 ##demo(['past','to','h_1','h_2','h_3','h_4','h_5','h_6','h_7','h_8','h_9','h_10','h_11','h_12','m_5','m_10','m_15','m_20','m_25','m_30'],clockFont1,0.25)
+
+parser=argparse.ArgumentParser()
+parser.add_argument("--demo","-d",help="run through some example times",action="store_true")
+args=parser.parse_args()
+if args.demo:
+    print 'demo mode on'   
+    while True:
+        demoTimeList(clockFont1,grid,1.75)
+        
 while True:
-    showTime(clockFont1)
+    ##showTime(clockFont1,grid2,datetime.datetime.now())
+    showTime(clockFont1,grid,datetime.datetime.now())
     
