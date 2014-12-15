@@ -10,6 +10,8 @@ My 7 and 8yr old kids wanted to get started with electronics and programming,
 Code & Images for making Word Clocks included. We used Raspberry Pi and 8x8 matrix.
 Code is Python & will possibly add a C version.
 
+Template inspired by https://www.youtube.com/watch?v=9ko9CeylUTs
+
 Starting with an Adafruit LED backpack via I2C may support others soon.
 
 https://learn.adafruit.com/adafruit-led-backpack/overview
