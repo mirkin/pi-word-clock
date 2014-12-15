@@ -4,9 +4,13 @@ Pi Word Clock
 My 7 and 8yr old kids wanted to get started with electronics and programming,
  so we started off with an LED word clock.
 
+[![Raspberry Pi Word Clock](http://img.youtube.com/vi/Dd1wtXz80Cs/0.jpg)]
+(http://www.youtube.com/watch?v=Dd1wtXz80Cs)
+
 Code & Images for making Word Clocks included. We used Raspberry Pi and 8x8 matrix.
 Code is Python & will possibly add a C version.
-Staring with an Adafruit LED backpack via I2C may support others soon.
+
+Starting with an Adafruit LED backpack via I2C may support others soon.
 
 https://learn.adafruit.com/adafruit-led-backpack/overview
 
