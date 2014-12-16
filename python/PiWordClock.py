@@ -2,13 +2,11 @@
 
 import time,os,datetime,sys,getopt,argparse
 from LEDGrid import LEDGrid
-#from datetime import datetime,time,timedelta,date
-
 
 def scrollMessage(message,font):
-    print message
+    print (message)
 
-def rotateFontCCW(font):
+def rotateFontCCW(font,grid=None):
     for c in font:
         font[c]=grid.rotateCCW(font[c])
 
@@ -84,10 +82,7 @@ def showTime(font=None,grid=None,now=datetime.datetime.now()):
         chars.append(font[w])
     grid.showChar(merge(chars))
         
-
-grid=LEDGrid(address=0x70,debug=False)
-grid.setBrightness(0)
-print "Pi Word Clock"
+print ("Pi Word Clock")
 smile=[0x3C,0x42,0x95,0xA1,0xA1,0x95,0x42,0x3c]
 empty=[0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00]
 all_on=[0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff]
@@ -95,7 +90,8 @@ past=[0x00,0x00,0x1e,0x00,0x00,0x00,0x00,0x00]
 arrow=[0x18,0x24,0x42,0xff,0x18,0x18,0x18,0x18]
 invader1=[0x18,0x3c,0x7e,0xdb,0xff,0x24,0x5a,0xa5]
 invader2=[0x18,0x3c,0x7e,0xdb,0xff,0x24,0x5a,0x42]
-invader1=(grid.rotateCCW(invader1))
+##invader1=(grid.rotateCCW(invader1))
+
 ##clockfont1 template
 ##HATWENTY
 ##FIFVTEEN
@@ -127,7 +123,6 @@ clockFont1={
     'm_25':[0x3f,0xd4,0x00,0x00,0x00,0x00,0x00,0x00],
     'm_30':[0xc0,0x00,0xc0,0x00,0x00,0x00,0x00,0x00]
             }
-rotateFontCCW(clockFont1)
 ##grid2=LEDGrid(address=0x71,debug=False)
 ##grid2.showChar(invader1)
 ##grid2.setBrightness(0)
@@ -135,9 +130,18 @@ rotateFontCCW(clockFont1)
 
 parser=argparse.ArgumentParser()
 parser.add_argument("--demo","-d",help="run through some example times",action="store_true")
+parser.add_argument("--address","-a",help="I2C address default is 0x70",default='0x70')
+parser.add_argument("--brightness","-b",help="LED brightness (0->15) default is 0",default='0')
 args=parser.parse_args()
+
+address=int(args.address,16)
+brightness=int(args.brightness,10)
+grid=LEDGrid(address=address,debug=False)
+grid.setBrightness(brightness)
+rotateFontCCW(clockFont1,grid)
+
 if args.demo:
-    print 'demo mode on'   
+    print ('demo mode on' )  
     while True:
         demoTimeList(clockFont1,grid,1.75)
         

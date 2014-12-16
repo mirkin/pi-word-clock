@@ -24,7 +24,7 @@ class LEDGrid:
 
   def printHex(self,c):
     for x in c:
-      print '0x{0:0=2x}'.format(x)
+      print ('0x{0:0=2x}'.format(x))
 
   @staticmethod
   def flipX(c):
