@@ -41,36 +41,37 @@ def demoTimeList(font=None,grid=None,delay=1,times=[[1,5],[2,10],[3,15],[4,30],[
         time.sleep(delay)
 
 def showTime(font=None,grid=None,now=datetime.datetime.now()):
+    timeString='It is '
     words=[]
     hour=now.hour
     minute=now.minute
     if minute>=5 and minute <10:
-        words=['m_5','past']
+        words=['m_5']
     elif minute>=10 and minute <15:
-        words=['m_10','past']
+        words=['m_10']
     elif minute>=15 and minute <20:
-        words=['m_15','past']
+        words=['m_15']
     elif minute>=20 and minute <25:
-        words=['m_20','past']
+        words=['m_20']
     elif minute>=25 and minute <30:
-        words=['m_25','past']
+        words=['m_25']
     elif minute>=30 and minute <35:
-        words=['m_30','past']
+        words=['m_30']
     elif minute>=35 and minute <40:
-        hour+=1
-        words=['m_25','to']
+        words=['m_25']
     elif minute>=40 and minute <45:
-        hour+=1
-        words=['m_20','to']
+        words=['m_20']
     elif minute>=45 and minute <50:
-        hour+=1
-        words=['m_15','to']
+        words=['m_15']
     elif minute>=50 and minute <55:
-        hour+=1
-        words=['m_10','to']
+        words=['m_10']
     elif minute>=55 and minute <60:
+        words=['m_5']
+    if minute>=5 and minute<35:
+        words.append('past')
+    if minute >=35 and minute<60:
+        words.append('to')
         hour+=1
-        words=['m_5','to']
     if hour>12:
         hour-=12
     if hour==0:
