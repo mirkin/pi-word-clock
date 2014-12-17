@@ -19,6 +19,38 @@ class LEDGrid:
       bytes.append(0x00)
       self.i2c.writeList(0x00,bytes)
 
+  def scrollString(self,font,message='hello',speed=1):
+    delay=0.5 ** speed
+    length=len(message)
+    charRange=range(length-1)
+    for charPos in charRange:
+      leftChar=font[message[charPos]]
+      rightChar=font[message[charPos+1]]
+      for shift in range(8):
+        bytes=[0,0,0,0,0,0,0,0]
+        for col in range(8):
+          if col>=shift:
+            bytes[col]+=leftChar[col-shift]
+          else:
+            bytes[col]+=rightChar[col-shift+8]
+        self.showChar(bytes)
+        time.sleep(delay)
+
+  def scrollStringDown(self,font,message='hello',speed=1):
+    delay=0.5 ** speed
+    length=len(message)
+    charRange=range(length)
+    for charPos in charRange:
+      leftChar=font[message[charPos]]
+      rightChar=font[message[charPos+1]]
+      for shift in range(8):
+        bytes=[0,0,0,0,0,0,0,0]
+        for col in range(8):
+          bytes[col]=bytes[col]|leftChar[col]<<shift
+          self.showChar(bytes)
+        time.sleep(delay)
+
+
   def setBrightness(self,brightness):
     self.i2c.write8(0xe0|brightness,0x00)
 
@@ -34,6 +66,13 @@ class LEDGrid:
         temp=7-x
         result[x]=result[x] | (c[temp] & 0x01<<y) >> 0
     return result
+
+  @staticmethod
+  def flipFontX(f):
+    result=[0,0,0,0,0,0,0,0]
+    for l in f:
+      f[l]=LEDGrid.flipX(f[l])
+    return f
 
   @staticmethod
   def rotateCCW(c):
