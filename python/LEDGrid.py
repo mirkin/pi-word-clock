@@ -19,7 +19,33 @@ class LEDGrid:
       bytes.append(0x00)
       self.i2c.writeList(0x00,bytes)
 
-  def scrollString(self,font,message='hello',speed=1):
+  def playAnimation(self,font,animation,speed=1):
+    delay=0.5**speed
+    for frame in animation:
+      self.showChar(font[frame])
+      time.sleep(delay);
+
+
+  def scrollString(self,font,message='hello',speed=1,spacing=0):
+    delay=0.5 ** speed
+    length=len(message)
+    charRange=range(length-1)
+    for charPos in charRange:
+      leftChar=font[message[charPos]]
+      rightChar=font[message[charPos+1]]
+      for shift in range(8+spacing):
+        bytes=[0,0,0,0,0,0,0,0]
+        for col in range(8):
+          if col>=shift:
+            bytes[col]=leftChar[col-shift]
+          elif col<shift-spacing:
+            bytes[col]=rightChar[col-shift+spacing]
+          else:
+            bytes[col]=0
+        self.showChar(bytes)
+        time.sleep(delay)
+
+  def scrollStringOld(self,font,message='hello',speed=1):
     delay=0.5 ** speed
     length=len(message)
     charRange=range(length-1)
@@ -30,9 +56,9 @@ class LEDGrid:
         bytes=[0,0,0,0,0,0,0,0]
         for col in range(8):
           if col>=shift:
-            bytes[col]+=leftChar[col-shift]
+            bytes[col]=leftChar[col-shift]
           else:
-            bytes[col]+=rightChar[col-shift+8]
+            bytes[col]=rightChar[col-shift+8]
         self.showChar(bytes)
         time.sleep(delay)
 
@@ -72,6 +98,13 @@ class LEDGrid:
     result=[0,0,0,0,0,0,0,0]
     for l in f:
       f[l]=LEDGrid.flipX(f[l])
+    return f
+
+  @staticmethod
+  def rotateFontCCW(f):
+    result=[0,0,0,0,0,0,0,0]
+    for l in f:
+      f[l]=LEDGrid.rotateCCW(f[l])
     return f
 
   @staticmethod

@@ -84,13 +84,6 @@ def showTime(font=None,grid=None,now=datetime.datetime.now()):
     grid.showChar(merge(chars))
         
 print ("Pi Word Clock")
-smile=[0x3C,0x42,0x95,0xA1,0xA1,0x95,0x42,0x3c]
-empty=[0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00]
-all_on=[0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff]
-past=[0x00,0x00,0x1e,0x00,0x00,0x00,0x00,0x00]
-arrow=[0x18,0x24,0x42,0xff,0x18,0x18,0x18,0x18]
-invader1=[0x18,0x3c,0x7e,0xdb,0xff,0x24,0x5a,0xa5]
-invader2=[0x18,0x3c,0x7e,0xdb,0xff,0x24,0x5a,0x42]
 ##invader1=(grid.rotateCCW(invader1))
 
 ##grid2=LEDGrid(address=0x71,debug=False)
@@ -109,8 +102,12 @@ brightness=int(args.brightness,10)
 grid=LEDGrid(address=address,debug=False)
 grid.setBrightness(brightness)
 rotateFontCCW(fonts.clockFont1,grid)
+fonts.shapes=grid.rotateFontCCW(fonts.shapes)
 #fonts.textFont1=grid.flipFontX(fonts.textFont1)
 #fonts.printFont(fonts.textFont1)
+demoAnim=['heart2F','tree1','tree2','invader1','invader2','smile','heart1','heart1F','heart2','heart2F','empty']
+#grid.playAnimation(fonts.shapes,demoAnim,speed=0.1)
+grid.scrollString(fonts.shapes,demoAnim,speed=4,spacing=1)
 grid.scrollString(fonts.textFont1," GurgleApps.com Word Clock ",speed=4)
 #grid.scrollString(textFont1,"{}[]~^|ABCDEFGHIJKLMNOPQRSTUVWXYZ=@<>\"'#?()+*!:\/_-0123456789abcdefghijklmnopqrstuvwxyz",speed=4)
 
