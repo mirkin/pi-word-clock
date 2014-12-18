@@ -105,19 +105,19 @@ rotateFontCCW(fonts.clockFont1,grid)
 fonts.shapes=grid.rotateFontCCW(fonts.shapes)
 #fonts.textFont1=grid.flipFontX(fonts.textFont1)
 #fonts.printFont(fonts.textFont1)
-demoAnim=['heart2F','tree1','tree2','invader1','invader2','smile','heart1','heart1F','heart2','heart2F','empty']
-#grid.playAnimation(fonts.shapes,demoAnim,speed=0.1)
-grid.scrollString(fonts.shapes,demoAnim,speed=4,spacing=1)
-grid.scrollString(fonts.textFont1," GurgleApps.com Word Clock ",speed=4)
 #grid.scrollString(textFont1,"{}[]~^|ABCDEFGHIJKLMNOPQRSTUVWXYZ=@<>\"'#?()+*!:\/_-0123456789abcdefghijklmnopqrstuvwxyz",speed=4)
 
 
 if args.demo:
     print ('demo mode on' )  
+    demoAnim=['heart2F','tree1','tree2','invader1','invader2','smile','heart1','heart1F','heart2','heart2F','empty']
+    grid.playAnimation(fonts.shapes,demoAnim,speed=0.1)
+    grid.scrollString(fonts.shapes,demoAnim,speed=4,spacing=1)
     while True:
         demoTimeList(fonts.clockFont1,grid,1.75)
+
+grid.scrollString(fonts.textFont1," GurgleApps.com Word Clock ",speed=4)
         
 while True:
-    ##showTime(clockFont1,grid2,datetime.datetime.now())
     showTime(fonts.clockFont1,grid,datetime.datetime.now())
     
