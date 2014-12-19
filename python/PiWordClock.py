@@ -110,7 +110,7 @@ fonts.shapes=grid.rotateFontCCW(fonts.shapes)
 
 if args.demo:
     print ('demo mode on' )  
-    demoAnim=['heart2F','tree1','tree2','invader1','invader2','smile','heart1','heart1F','heart2','heart2F','empty']
+    demoAnim=['smile','heart1','heart1F','heart2','heart2F','empty']
     grid.playAnimation(fonts.shapes,demoAnim,speed=0.1)
     grid.scrollString(fonts.shapes,demoAnim,speed=4,spacing=1)
     while True:
