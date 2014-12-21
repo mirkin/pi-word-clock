@@ -1,10 +1,11 @@
 
 ## Table of contents
 
-- [MAC Put OS onto SD card](#mac-sd)
-- [MAC Setup](#ssh)
-- [See Pi Files in Mac Finder](#mac-finder)
-- [Static IP Setup](#static-ip)
+- [MAC Put OS onto SD card](#mac-pu-os-onto-sd-card)
+- [MAC Setup](#mac-setup)
+- [See Pi Files in Mac Finder](#see-pi-files-in-mac-finder)
+- [Static IP Setup](#static-ip-setup)
+- [Git setup](#git-setup)
 
 
 ##MAC Put OS onto SD card 
@@ -138,6 +139,10 @@ I want to be able to browse and edit files on my Mac so
 sudo apt-get install netatalk
 ```
 Now I can log in at pi and use finder and all my favourite editing tools.
+
+##Git setup
+git config --global user.email "alex@example.com"
+git config --global user.name "My name"
 
 
 
