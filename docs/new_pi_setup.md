@@ -1,5 +1,13 @@
 
-MAC Put OS onto SD card 
+## Table of contents
+
+- [MAC Put OS onto SD card](#mac-sd)
+- [MAC Setup](#ssh)
+- [See Pi Files in Mac Finder](#mac-finder)
+- [Static IP Setup](#static-ip)
+
+
+##MAC Put OS onto SD card 
 =======================
 
 Insert SD card  
@@ -37,7 +45,7 @@ sudo dd bs=1m if=/Volumes/H/xfer/usefull-apps/RasPi/2014-09-09-wheezy-raspbian.i
 Then wait for a long time CTRL+t will show progress
 Took about half an hr. Then plug in the Pi and off you go.
 
-MAC Setup
+##MAC Setup
 =========
 
 I'm going headless so no monitor, keyboard, or mouse. Plugged into network and checked the
@@ -64,8 +72,13 @@ permitted by applicable law.
 
 NOTICE: the software on this Raspberry Pi has not been fully configured. Please run 'sudo raspi-config'
 ```
+If you want to be up to date
 
-Now configure
+```bash
+sudo apt-get update
+```
+
+Now configure for the first time
 
 ```bash
 sudo raspi-config
@@ -73,6 +86,8 @@ sudo raspi-config
 
 Expand file system to use the full SD
 Under advanced set hostname and enable I2C finish and reboot.
+
+##Static IP Setup
 
 Now I want to set a static IP address so change the /etc/network/interfaces 
 
@@ -116,6 +131,13 @@ sudo reboot
 
 Can now ssh to 192.168.1.32
 
+##See Pi Files in Mac Finder
+
+I want to be able to browse and edit files on my Mac so
+```bash
+sudo apt-get install netatalk
+```
+Now I can log in at pi and use finder and all my favourite editing tools.
 
 
 
