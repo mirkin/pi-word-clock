@@ -6,6 +6,9 @@
 - [See Pi Files in Mac Finder](#see-pi-files-in-mac-finder)
 - [Static IP Setup](#static-ip-setup)
 - [Git setup](#git-setup)
+- [Wifi Setup ](#wifi-setup )
+- [I2C Setup](#i2c-setup)
+- [User Management](#user-management)
 
 
 ##MAC Put OS onto SD card 
@@ -141,8 +144,146 @@ sudo apt-get install netatalk
 Now I can log in at pi and use finder and all my favourite editing tools.
 
 ##Git setup
+```bash
 git config --global user.email "alex@example.com"
 git config --global user.name "My name"
+```
+
+##Wifi Setup 
+
+Edit /etc/network/interfaces 
+
+```bash
+#interfaces to bring up automatically when ifup is run with -a
+auto lo eth0 wlan0
+
+#command such as ifup --allow=hotplug eth0 wlan0 will bring up only if listed below
+allow-hotplug eth0
+allow-hotplug wlan0
+
+#127.0.0.1
+iface lo inet loopback
+
+#iface eth0 inet dhcp
+
+#wired lan gets static ip 192.168.1.32
+iface eth0 inet static
+   address 192.168.1.32
+   gateway 192.168.1.1
+   netmask 255.255.255.0
+   #network 192.168.1.0
+   #broadcast 192.168.1.255
+
+#wireless
+iface wlan0 inet manual
+wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+iface walvin inet static
+   address 192.168.1.33
+   gateway 192.168.1.1
+   netmask 255.255.255.0
+   #network 192.168.1.0
+   #broadcast 192.168.1.255
+
+iface default inet dhcp
+```
+
+Edit /etc/wpa_supplicant/wpa_supplicant.conf
+You can set multiple wireless networks and have different id_str for each
+to reference in /etc/network/interfaces 
+``bash
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+network={
+   ssid="mywirelessssid"
+   psk="mypassword"
+   key_mgmt=WPA-PSK
+   id_str="walvin"
+}
+```
+
+##I2C Setup
+Get tools and python libs
+```bash
+sudo apt-get install i2c-tools
+sudo apt-get install python-smbus
+```
+
+Add i2c-dev to /etc/modules
+```bash
+# /etc/modules: kernel modules to load at boot time.
+#
+# This file contains the names of kernel modules that should be loaded
+# at boot time, one per line. Lines beginning with "#" are ignored.
+# Parameters can be specified after the module name.
+
+snd-bcm2835
+i2c-dev
+```
+
+Then check with sudo i2cdetect -y 1 or sudo i2cdetect -y 1 depending on your model
+
+```bash
+sudo i2cdetect -y 1
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- 71 -- -- -- -- -- --
+```
+
+##User Management
+Add/Remove a user I'll add and remove alex, the -r is to delete the home folder of alex
+```bash
+sudo adduser alex
+sudo userdel -r alex
+```
+The user will not be able to sudo, if you want them to be able to then
+```bash
+sudo visudo
+```
+and add an entry for them
+```bash
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# Please consider adding local content in /etc/sudoers.d/ instead of
+# directly modifying this file.
+#
+# See the man page for details on how to write a sudoers file.
+#
+Defaults        env_reset
+Defaults        mail_badpass
+Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root    ALL=(ALL:ALL) ALL
+
+# Allow members of group sudo to execute any command
+%sudo   ALL=(ALL:ALL) ALL
+
+# See sudoers(5) for more information on "#include" directives:
+
+#includedir /etc/sudoers.d
+pi ALL=(ALL) NOPASSWD: ALL
+alex ALL=(ALL) NOPASSWD: ALL
+```
+
+Change your password or another person's
+```bash
+passwd
+sudo passwd alex
+```
+
 
 
 
