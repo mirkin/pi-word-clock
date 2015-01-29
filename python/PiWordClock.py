@@ -116,8 +116,7 @@ if args.demo:
     while True:
         demoTimeList(fonts.clockFont1,grid,1.75)
 
-grid.scrollString(fonts.textFont1," GurgleApps.com Word Clock ",speed=4)
-        
+grid.scrollString(fonts.textFont1," GurgleApps.com Word Clock ",speed=4)    
 while True:
     showTime(fonts.clockFont1,grid,datetime.datetime.now())
     

@@ -9,6 +9,7 @@
 - [Wifi Setup ](#wifi-setup )
 - [I2C Setup](#i2c-setup)
 - [User Management](#user-management)
+- [Setup .local domain](#setup-.local-domain)
 
 
 ##MAC Put OS onto SD card 
@@ -283,7 +284,26 @@ Change your password or another person's
 passwd
 sudo passwd alex
 ```
+##Setup VNC 
+```bash
+sudo apt-get install tightvncserver
+```
+Wait for install, and press Y enter if it asks for confirmation.
+```bash
+vncserver :1
 
+You will require a password to access your desktops.
 
+Password:
+```
+Follow instructions, and then to start it up
+```bash
+vncserver :0 -geometry 1920x1080 -depth 24
+```
 
+##Setup .local domain
+Useful if you get a dynamic IP from your DHCP or even if you have a static IP and forget it. netatalk will already have set this up but here is how to do it anyway.
+```bash
+sudo apt-get install avahi-daemon
+```
 

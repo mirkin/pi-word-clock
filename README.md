@@ -10,7 +10,9 @@ My 7 and 8yr old kids wanted to get started with electronics and programming,
 Code & Images for making Word Clocks included. We used Raspberry Pi and 8x8 matrix.
 Code is Python & will possibly add a C version.
 
-There are 8x8 fonts included and the ability to scroll messages. The code has a demo
+There are 8x8 fonts included and the ability to scroll messages or animate frames of 8x8 sprites. There is a tool at http://gurgleapps.com/tools/matrix which makes it easy to design 8x8 sprites and get the HEX code out.
+
+The code has a demo
 mode to run through times, and takes command line arguments to set brightness and I2C
 address etc.
 
