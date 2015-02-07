@@ -1,14 +1,11 @@
 #!/usr/bin/python
 
-import datetime,time,unicornhat,Grid
+import datetime,time,unicornhat,LEDGrid
 
-class UnicornGrid(Grid.Grid):
-
-  bg=[0x00,0x00,0x00]
-  fg=[0xFF,0xFF,0xFF]
+class UnicornGrid(LEDGrid.LEDGrid):
 
   def __init__(self,debug=False):
-    Grid.Grid.__init__(self,debug)
+    LEDGrid.LEDGrid.__init__(self,debug)
   
   def showChar(self,c):
     for x in range(8):

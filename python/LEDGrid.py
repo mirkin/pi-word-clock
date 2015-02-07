@@ -1,23 +1,18 @@
 #!/usr/bin/python
 
 import datetime,time
-from Adafruit_I2C import Adafruit_I2C
 
 class LEDGrid:
-  i2c=None
 
-  def __init__(self,address=0x70,debug=False):
-    self.i2c=Adafruit_I2C(address=address)
-    self.i2c.write8(0x21,0x00)
-    self.i2c.write8(0x81,0x00)
-    self.i2c.write8(0xe0 | 0x01,0x00)
+  debug=False
+  bg=[0x00,0x00,0x00]
+  fg=[0xFF,0xFF,0xFF]
+
+  def __init__(self,debug=False):
+    self.debug=debug
   
   def showChar(self,c):
-    bytes=[]
-    for item in c:
-      bytes.append( ((item & 0xFE)>>1)|((item & 0x01)<<7) )
-      bytes.append(0x00)
-      self.i2c.writeList(0x00,bytes)
+    pass
 
   def playAnimation(self,font,animation,speed=1):
     delay=0.5**speed
@@ -78,7 +73,7 @@ class LEDGrid:
 
 
   def setBrightness(self,brightness):
-    self.i2c.write8(0xe0|brightness,0x00)
+    pass
 
   def printHex(self,c):
     for x in c:

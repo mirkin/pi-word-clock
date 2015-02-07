@@ -1,7 +1,5 @@
 #!/usr/bin/python
-
-import time,os,datetime,sys,getopt,argparse,fonts
-from LEDGrid import LEDGrid
+import time,os,datetime,sys,getopt,argparse,fonts,I2CGrid
 
 def scrollMessage(message,font):
     print (message)
@@ -99,7 +97,7 @@ args=parser.parse_args()
 
 address=int(args.address,16)
 brightness=int(args.brightness,10)
-grid=LEDGrid(address=address,debug=False)
+grid=I2CGrid.I2CGrid(address=address,debug=False)
 grid.setBrightness(brightness)
 rotateFontCCW(fonts.clockFont1,grid)
 fonts.shapes=grid.rotateFontCCW(fonts.shapes)
