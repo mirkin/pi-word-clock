@@ -7,7 +7,8 @@ My 7 and 8yr old kids wanted to get started with electronics and programming,
 [![Raspberry Pi Word Clock](http://img.youtube.com/vi/Dd1wtXz80Cs/0.jpg)]
 (http://www.youtube.com/watch?v=Dd1wtXz80Cs)
 
-Code & Images for making Word Clocks included. We used Raspberry Pi and 8x8 matrix.
+Code & Images for making Word Clocks included. We used Raspberry Pi and 8x8 matrix. Works with I2C Adafruit Backpack and the Unicorn Hat from Pimoroni.
+
 Code is Python & will possibly add a C version.
 
 There are 8x8 fonts included and the ability to scroll messages or animate frames of 8x8 sprites. There is a tool at http://gurgleapps.com/tools/matrix which makes it easy to design 8x8 sprites and get the HEX code out.
