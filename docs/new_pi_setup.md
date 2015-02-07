@@ -10,6 +10,7 @@
 - [I2C Setup](#i2c-setup)
 - [User Management](#user-management)
 - [Setup .local domain](#setup-.local-domain)
+- [Pimoroni Unicorn Hat](#Pimoroni-Unicorn-Hat)
 
 
 ##MAC Put OS onto SD card 
@@ -306,4 +307,37 @@ Useful if you get a dynamic IP from your DHCP or even if you have a static IP an
 ```bash
 sudo apt-get install avahi-daemon
 ```
+
+##OpenCV Python
+```bash
+sudo apt-get install python-opencv
+```
+
+If you want to use the camera
+```bash
+sudo modprobe bcm2835-v4l2
+```
+
+##X11 Windows on Mac
+Download X11 for Mac open shell and type xhost +
+Tick both boxes on Mac preferences under security
+SSH user_of_pi@ip_of_pi -X (I didn't need the -X option)
+export DISPLAY='ip_of_mac:0.0'
+
+##Pimoroni Unicorn Hat
+Only uses 3 pins GPIO 18, +5V and Ground. To match up with the unicorn hat and pi B+ is used jump wires between pins 2(5V),9(Ground),12(GPIO18) to the same on the Hat. So that is the 1st and 6th on one side and 5th on the other.
+
+Software
+https://github.com/pimoroni/UnicornHat
+\curl -sS get.pimoroni.com/unicornhat | bash
+
+Or
+
+(Python 3)
+sudo apt-get install python3-pip python3-dev
+sudo pip-3.2 install unicornhat
+(Python 2)
+sudo apt-get install python-pip python-dev
+sudo pip install unicornhat
+
 
