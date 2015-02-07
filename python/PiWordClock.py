@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import time,os,datetime,sys,getopt,argparse,fonts,WordClock
+import time,os,datetime,sys,getopt,argparse,fonts
 from LEDGrid import LEDGrid
 
 def scrollMessage(message,font):

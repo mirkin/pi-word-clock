@@ -1,9 +1,9 @@
 
 #!/usr/bin/python
 
-import datetime,time,unicornhat
+import datetime,time
 
-class UnicornGrid:
+class Grid:
 
   debug=False
   bg=[0x00,0x00,0x00]
