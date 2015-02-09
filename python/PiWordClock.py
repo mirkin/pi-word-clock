@@ -1,24 +1,12 @@
 #!/usr/bin/python
-import time,os,datetime,sys,getopt,argparse,fonts,I2CGrid
+import time,os,datetime,sys,getopt,argparse,fonts,I2CGrid,WordClock
 
-def scrollMessage(message,font):
-    print (message)
-
-def rotateFontCCW(font,grid=None):
-    for c in font:
-        font[c]=grid.rotateCCW(font[c])
 
 def demo(message='',font=None,delay=1):
     for m in message:
         grid.showChar(font[m])
         time.sleep(delay)
 
-def merge(words):
-    char=[0,0,0,0,0,0,0,0]
-    for w in words:
-        for x in range(0,8):
-            char[x]=char[x] | w[x]
-    return char
 
 def demoAllTimes(font=None,grid=None,delay=0.5):
     for m in range(0,720,5):
@@ -37,57 +25,8 @@ def demoTimeList(font=None,grid=None,delay=1,times=[[1,5],[2,10],[3,15],[4,30],[
         tempTime= datetime.datetime.combine(datetime.date.today(),datetime.time(t[0],t[1],0))
         showTime(font,grid,tempTime)
         time.sleep(delay)
-
-def showTime(font=None,grid=None,now=datetime.datetime.now()):
-    timeString='It is '
-    words=[]
-    hour=now.hour
-    minute=now.minute
-    if minute>=5 and minute <10:
-        words=['m_5']
-    elif minute>=10 and minute <15:
-        words=['m_10']
-    elif minute>=15 and minute <20:
-        words=['m_15']
-    elif minute>=20 and minute <25:
-        words=['m_20']
-    elif minute>=25 and minute <30:
-        words=['m_25']
-    elif minute>=30 and minute <35:
-        words=['m_30']
-    elif minute>=35 and minute <40:
-        words=['m_25']
-    elif minute>=40 and minute <45:
-        words=['m_20']
-    elif minute>=45 and minute <50:
-        words=['m_15']
-    elif minute>=50 and minute <55:
-        words=['m_10']
-    elif minute>=55 and minute <60:
-        words=['m_5']
-    if minute>=5 and minute<35:
-        words.append('past')
-    if minute >=35 and minute<60:
-        words.append('to')
-        hour+=1
-    if hour>12:
-        hour-=12
-    if hour==0:
-        hour=12
-    words.append('h_'+str(hour))
-    #words=['m_20','past','h_10']
-    chars=[]
-    for w in words:
-        chars.append(font[w])
-    grid.showChar(merge(chars))
         
-print ("Pi Word Clock")
-##invader1=(grid.rotateCCW(invader1))
-
-##grid2=LEDGrid(address=0x71,debug=False)
-##grid2.showChar(invader1)
-##grid2.setBrightness(0)
-##demo(['past','to','h_1','h_2','h_3','h_4','h_5','h_6','h_7','h_8','h_9','h_10','h_11','h_12','m_5','m_10','m_15','m_20','m_25','m_30'],clockFont1,0.25)
+print ("I2C Pi Word Clock")
 
 parser=argparse.ArgumentParser()
 parser.add_argument("--demo","-d",help="run through some example times",action="store_true")
@@ -98,8 +37,9 @@ args=parser.parse_args()
 address=int(args.address,16)
 brightness=int(args.brightness,10)
 grid=I2CGrid.I2CGrid(address=address,debug=False)
+wordClock=WordClock.WordClock(grid)
 grid.setBrightness(brightness)
-rotateFontCCW(fonts.clockFont1,grid)
+wordClock.rotateFontCCW(fonts.clockFont1)
 #fonts.printFont(fonts.clockFont1)
 fonts.shapes=grid.rotateFontCCW(fonts.shapes)
 #fonts.textFont1=grid.flipFontX(fonts.textFont1)
@@ -117,5 +57,5 @@ if args.demo:
 
 grid.scrollString(fonts.textFont1," GurgleApps.com Word Clock ",speed=4)    
 while True:
-    showTime(fonts.clockFont1,grid,datetime.datetime.now())
+    wordClock.showTime(fonts.clockFont1,datetime.datetime.now())
     
