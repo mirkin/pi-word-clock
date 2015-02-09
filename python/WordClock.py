@@ -1,13 +1,15 @@
 #!/usr/bin/python
-import datetime
+import datetime,time,LEDGrid
 
 class WordClock:
 
   myGrid=None
+  colors=None
 
   def __init__(self,grid):
     print('WordClick init:')
     self.myGrid=grid
+    self.colors=[grid.colors['red'],grid.colors['blue'],grid.colors['green'],grid.colors['pink'],grid.colors['purple'],grid.colors['orange']]
 
   def showTime(self,font=None,now=datetime.datetime.now()):
     timeString='It is '
@@ -51,6 +53,19 @@ class WordClock:
     for w in words:
         chars.append(font[w])
     self.myGrid.showChar(self.merge(chars))
+
+  def demoTimeList(self,font=None,delay=1,times=[[1,5],[2,10],[3,15],[4,30],[4,35],[5,40],[6,45],[7,50],[8,55],[9,0],[10,5],[11,15],[12,30]],colors=None):
+    if (colors==None):
+      colors=self.colors
+    remCol=self.myGrid.fg
+    col=0;
+    for t in times:
+        self.myGrid.fg=colors[col]
+        col=(col+1) % (len(colors)-1)
+        tempTime= datetime.datetime.combine(datetime.date.today(),datetime.time(t[0],t[1],0))
+        self.showTime(font,tempTime)
+        time.sleep(delay)
+    self.myGrid.fg=remCol
 
   def merge(self,words):
     char=[0,0,0,0,0,0,0,0]

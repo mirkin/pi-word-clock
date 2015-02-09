@@ -1,12 +1,23 @@
 #!/usr/bin/python
 
-import datetime,time
+import datetime,time,random,colorsys
 
 class LEDGrid:
 
   debug=False
   bg=[0x00,0x00,0x00]
   fg=[0xFF,0xFF,0xFF]
+  colors={
+  'red':[0xff,0x00,0x00],
+  'blue':[0x00,0x00,0xff],
+  'green':[0x00,0xff,0x00],
+  #'yellow':[0xff,0xff,0x00],
+  'pink':[0xff,0x00,0xff],
+  #'cyan':[0x00,0xff,0xff],
+  'orange':[0xff,0x96,0x00],
+  #'lime':[0x96,0xff,0x00],
+  'purple':[0x66,0x00,0xff],
+  }
 
   def __init__(self,debug=False):
     self.debug=debug
@@ -94,6 +105,23 @@ class LEDGrid:
   def printHex(self,c):
     for x in c:
       print ('0x{0:0=2x}'.format(x))
+
+  @staticmethod
+  def randomColor():
+    s=0.8
+    v=random.random();
+    h=0.1*v
+    rgb=colorsys.hsv_to_rgb(h,s,v)
+    r = int(rgb[0]*255.0)
+    g = int(rgb[1]*255.0)
+    b = int(rgb[2]*255.0)
+    return [r,g,b]
+
+  @staticmethod
+  def randomColourFromSet():
+    c=random.sample(LEDGrid.colors,1)[0]
+    #print (c)
+    return LEDGrid.colors[c]
 
   @staticmethod
   def rotateFontCW(font):
