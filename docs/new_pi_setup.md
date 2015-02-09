@@ -1,17 +1,22 @@
 
 ## Table of contents
 
+- [About](#about)
 - [MAC Put OS onto SD card](#mac-pu-os-onto-sd-card)
 - [MAC Setup](#mac-setup)
 - [See Pi Files in Mac Finder](#see-pi-files-in-mac-finder)
 - [Static IP Setup](#static-ip-setup)
 - [Git setup](#git-setup)
 - [Wifi Setup ](#wifi-setup )
+- [Remove Wolfram](#Remove-Wolfram)
 - [I2C Setup](#i2c-setup)
 - [User Management](#user-management)
 - [Setup .local domain](#setup-.local-domain)
+- [Disk Usage](#Disk-Usage)
 - [Pimoroni Unicorn Hat](#Pimoroni-Unicorn-Hat)
 
+##About
+We have so many Raspberry Pi computers in our household, so we set up a collection of useful information so we can share our knowledge and quicky set up new systems.
 
 ##MAC Put OS onto SD card 
 =======================
@@ -203,6 +208,13 @@ network={
 }
 ```
 
+##Remove Wolfram
+
+Free up disk space by removing almost 500meg of Wolfram
+```bash
+sudo apt-get purge wolfram-engine
+```
+
 ##I2C Setup
 Get tools and python libs
 ```bash
@@ -221,8 +233,16 @@ Add i2c-dev to /etc/modules
 snd-bcm2835
 i2c-dev
 ```
+If you have this file, it may need editing
+```bash
+sudo nano /etc/modprobe.d/raspi-blacklist.conf
+```
+Then comment out (add # to the start) or remove
+```bash
+#blacklist i2c-bcm2708
+```
 
-Then check with sudo i2cdetect -y 1 or sudo i2cdetect -y 1 depending on your model
+Then check with sudo i2cdetect -y 1 (Newer models) or sudo i2cdetect -y 0 depending on your model
 
 ```bash
 sudo i2cdetect -y 1
@@ -235,6 +255,11 @@ sudo i2cdetect -y 1
 50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 70: -- 71 -- -- -- -- -- --
+```
+
+Any problems, you may need to reboot
+```bash
+sudo reboot
 ```
 
 ##User Management
@@ -307,6 +332,15 @@ Useful if you get a dynamic IP from your DHCP or even if you have a static IP an
 ```bash
 sudo apt-get install avahi-daemon
 ```
+
+##Disk Usage
+Useful to know what is taking up space if you only use a small 4Gig SD.
+
+```bash
+sudo du -sh /*
+sudo du -sh /dirname/*
+```
+The h option shows info in “Human Readable Format“ bytes,k,meg,gig instead of disk blocks. The s option will stop it reporting on subdirectories 
 
 ##OpenCV Python
 ```bash

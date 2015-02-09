@@ -59,3 +59,7 @@ class WordClock:
             char[x]=char[x] | w[x]
     return char
 
+  def rotateFontCCW(self,font):
+    for c in font:
+        font[c]=self.myGrid.rotateCCW(font[c])
+

@@ -26,51 +26,5 @@ https://learn.adafruit.com/adafruit-led-backpack/overview
 You can buy transparency paper for inkjet printers but even regular printer paper
 works quite well.
 
-To get i2c working on our pi we did the following
-
-```bash
-sudo nano /etc/modules
-```
-
-uncomment (remove #) or add these lines to the end of /etc/modules
-
-```
-i2c-dev
-snd-bcm2835
-```
-
-If you have this file, it needs editing
-
-```bash
-sudo nano /etc/modprobe.d/raspi-blacklist.conf
-```
-
-Then comment out (add # to the start) or remove
-
-```
-#blacklist i2c-bcm2708
-```
-
-Reboot
-```bash
-sudo reboot
-```
-
-```bash
-sudo apt-get install python-smbus
-sudo apt-get install i2c-tools
-```
-Hook up your backpack to the pi and type
-
-```bash
-sudo i2cdetect -y 1
-```
-
-We had an old 256MB Pi Model B so we typed
-
-```bash
-sudo i2cdetect -y 0
-```
-
-This will show the I2C address your backpack(s) are using
+Instructions to get i2c working on a pi are [here](docs/new_pi_setup.md)
 

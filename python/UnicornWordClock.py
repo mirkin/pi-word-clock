@@ -11,5 +11,6 @@ grid.fg=[0x00,0x00,0xff]
 #grid.scrollString(fonts.textFont1," GurgleApps.com Word Clock ",speed=4)
 
 wordClock=WordClock.WordClock(grid)
+wordClock.rotateFontCCW(fonts.clockFont1)
 while True:
     wordClock.showTime(fonts.clockFont1,datetime.datetime.now())
