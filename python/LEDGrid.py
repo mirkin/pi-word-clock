@@ -40,6 +40,22 @@ class LEDGrid:
         self.showChar(bytes)
         time.sleep(delay)
 
+  def scrollStringH(self,font,message='hello',speed=1,spacing=0):
+    delay=0.5 ** speed
+    length=len(message)
+    charRange=range(length-1)
+    for charPos in charRange:
+      leftChar=font[message[charPos]]
+      rightChar=font[message[charPos+1]]
+      for shift in range(8+spacing):
+        bytes=[0,0,0,0,0,0,0,0]
+        for col in range(8):
+          bytes[col]=bytes[col]|leftChar[col]<<shift
+          bytes[col]=bytes[col]|rightChar[col]>>8-shift;
+        self.showChar(bytes)
+        time.sleep(delay)
+
+
   def scrollStringOld(self,font,message='hello',speed=1):
     delay=0.5 ** speed
     length=len(message)
@@ -78,6 +94,16 @@ class LEDGrid:
   def printHex(self,c):
     for x in c:
       print ('0x{0:0=2x}'.format(x))
+
+  @staticmethod
+  def rotateFontCW(font):
+    for c in font:
+        font[c]=LEDGrid.rotateCW(font[c])
+
+  @staticmethod
+  def rotateFontCCW(font):
+    for c in font:
+        font[c]=LEDGrid.rotateCCW(font[c])
 
   @staticmethod
   def flipX(c):
