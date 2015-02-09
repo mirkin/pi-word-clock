@@ -46,6 +46,8 @@ fonts.shapes=grid.rotateFontCCW(fonts.shapes)
 #fonts.printFont(fonts.textFont1)
 #grid.scrollString(textFont1,"{}[]~^|ABCDEFGHIJKLMNOPQRSTUVWXYZ=@<>\"'#?()+*!:\/_-0123456789abcdefghijklmnopqrstuvwxyz",speed=4)
 
+wordClock.rotateFontCCW(fonts.textFont1)
+fonts.printFont(fonts.textFont1)
 
 if args.demo:
     print ('demo mode on' )  
