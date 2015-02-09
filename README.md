@@ -26,5 +26,5 @@ https://learn.adafruit.com/adafruit-led-backpack/overview
 You can buy transparency paper for inkjet printers but even regular printer paper
 works quite well.
 
-Instructions to get i2c working on a pi are [here](docs/new_pi_setup.md)
+Instructions to get i2c working on a pi are [here](docs/new_pi_setup.md#i2c-setup)
 
