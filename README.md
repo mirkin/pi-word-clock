@@ -15,14 +15,42 @@ There are 8x8 fonts included and the ability to scroll messages or animate frame
 
 The code has a demo mode to run through times, and takes command line arguments to set brightness and I2C address etc.
 
-Starting with an Adafruit LED backpack via I2C may support others soon.
+You can buy transparency paper for inkjet printers but even regular printer paper works quite well.
 
-https://learn.adafruit.com/adafruit-led-backpack/overview
+I2C Version
+```bash
+sudo python I2CWordClock.py
+usage: I2CWordClock.py [-h] [--demo] [--address ADDRESS]
+                       [--brightness BRIGHTNESS]
 
-You can buy transparency paper for inkjet printers but even regular printer paper
-works quite well.
+optional arguments:
+  -h, --help            show this help message and exit
+  --demo, -d            run through some example times
+  --address ADDRESS, -a ADDRESS
+                        I2C address default is 0x70
+  --brightness BRIGHTNESS, -b BRIGHTNESS
+                        LED brightness (0->15) default is 0
+```
+
+Unicorn Hat Version
+```bash
+sudo python UnicornWordClock.py
+usage: UnicornWordClock.py [-h] [--demo] [--brightness BRIGHTNESS]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --demo, -d            run through some example times
+  --brightness BRIGHTNESS, -b BRIGHTNESS
+                        LED brightness (0.0->1.0) default is 0.2
+```
 
 Instructions to get i2c working on a pi are [here](docs/new_pi_setup.md#i2c-setup)
+
+Adafruit LED backpack
+https://learn.adafruit.com/adafruit-led-backpack/overview
+
+Pimoroni Unicorn Hat
+http://shop.pimoroni.com/products/unicorn-hat
 
 Template inspired by Daniel Rojas https://github.com/formatc1702/Micro-Word-Clock
 
