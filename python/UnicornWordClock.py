@@ -17,6 +17,7 @@ grid.setBrightness(float(args.brightness))
 #grid.scrollStringH(fonts.textFont1," GurgleApps.com Word Clock ",speed=4)
 
 wordClock=WordClock.WordClock(grid)
+wordClock.randomColorChange=True
 #grid.rotateFontCCW(fonts.clockFont1)
 
 if args.demo:

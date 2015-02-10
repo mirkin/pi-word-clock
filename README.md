@@ -13,11 +13,7 @@ Code is Python & will possibly add a C version.
 
 There are 8x8 fonts included and the ability to scroll messages or animate frames of 8x8 sprites. There is a tool at http://gurgleapps.com/tools/matrix which makes it easy to design 8x8 sprites and get the HEX code out.
 
-The code has a demo
-mode to run through times, and takes command line arguments to set brightness and I2C
-address etc.
-
-Template inspired by Daniel Rojas https://github.com/formatc1702/Micro-Word-Clock
+The code has a demo mode to run through times, and takes command line arguments to set brightness and I2C address etc.
 
 Starting with an Adafruit LED backpack via I2C may support others soon.
 
@@ -27,4 +23,6 @@ You can buy transparency paper for inkjet printers but even regular printer pape
 works quite well.
 
 Instructions to get i2c working on a pi are [here](docs/new_pi_setup.md#i2c-setup)
+
+Template inspired by Daniel Rojas https://github.com/formatc1702/Micro-Word-Clock
 
