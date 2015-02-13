@@ -4,8 +4,10 @@ Pi Word Clock
 My 7 and 8yr old kids wanted to get started with electronics and programming,
  so we started off with an LED word clock.
 
-[![Raspberry Pi Word Clock](http://img.youtube.com/vi/Dd1wtXz80Cs/0.jpg)]
+[![Raspberry Pi Word Clock](http://gurgleapps.com/assets/images/blog/raspberry-pi-word-clock-460x276.jpg)]
 (http://www.youtube.com/watch?v=Dd1wtXz80Cs)
+
+See them in action [I2C Version](http://www.youtube.com/watch?v=Dd1wtXz80Cs) [Unicorn Hat Colour Version](http://www.youtube.com/watch?v=QlTQ89PbJo4)
 
 Code & Images for making Word Clocks included. We used Raspberry Pi and 8x8 matrix. Works with I2C Adafruit Backpack and the Unicorn Hat from Pimoroni.
 
