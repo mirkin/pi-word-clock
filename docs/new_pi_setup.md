@@ -374,4 +374,10 @@ sudo pip-3.2 install unicornhat
 sudo apt-get install python-pip python-dev
 sudo pip install unicornhat
 
+##Make Python File Executable
+sudo chmod +x filename.py
+
+##Run at startup
+Put file in /etc/init.d
+
 
