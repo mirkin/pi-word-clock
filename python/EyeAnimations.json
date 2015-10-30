@@ -1,0 +1,26 @@
+{
+  "stareAndBlink": {
+    "left": [
+      "straight",
+      "straightBlink1",
+      "straightBlink2",
+      "straightBlink3",
+      "all_off",
+      "straightBlink3",
+      "straightBlink2",
+      "straightBlink1",
+      "straight"
+    ],
+    "right": [
+      "straight",
+      "straightBlink1",
+      "straightBlink2",
+      "straightBlink3",
+      "all_off",
+      "straightBlink3",
+      "straightBlink2",
+      "straightBlink1",
+      "straight"
+    ]
+  }
+}

@@ -378,6 +378,7 @@ sudo pip install unicornhat
 sudo chmod +x filename.py
 
 ##Run at startup
-Put file in /etc/init.d
+Put file in /etc/init.d (fpr example alexscript.sh)
+sudo update-rc.d alexscript.sh defaults
 
 
