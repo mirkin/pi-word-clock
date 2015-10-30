@@ -31,6 +31,12 @@ class LEDGrid:
       self.showChar(font[frame])
       time.sleep(delay);
 
+  def playAnimation2(self,font,animation):
+    for frame in animation:
+      self.setBrightness(frame['b'])
+      self.showChar(font[frame['name']])
+      time.sleep(frame['delay']);
+
 
   def scrollString(self,font,message='hello',speed=1,spacing=0):
     delay=0.5 ** speed

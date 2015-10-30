@@ -1,7 +1,7 @@
 #!/usr/bin/python
-import time,os,datetime,sys,argparse,fonts,I2CGrid,EyeAnimations as ea,threading,json
+import time,os,datetime,sys,argparse,fonts,I2CGrid,threading,json,random
 print ("Eyes (0) (0)")
-print len(ea.a)
+currentAnim='stareAndBlink'
 parser=argparse.ArgumentParser()
 parser.add_argument("--addressLeft","-al",help="I2C address left eye default is 0x70",default='0x70')
 parser.add_argument("--addressRight","-ar",help="I2C address right eye default is 0x71",default='0x71')
@@ -16,6 +16,9 @@ rightEye=I2CGrid.I2CGrid(address=addressRight,debug=False)
 leftEye.setBrightness(brightness)
 rightEye.setBrightness(brightness)
 fonts.eyes=leftEye.rotateFontCCW(fonts.eyes)
+fonts.textFont1=leftEye.rotateFontCCW(fonts.textFont1)
+scroll=True
+message=' Spooky '
 
 class myThread (threading.Thread):
   def __init__(self, threadID, name, eye, anim):
@@ -25,7 +28,14 @@ class myThread (threading.Thread):
       self.eye=eye
       self.anim=anim
   def run(self):
-      self.eye.playAnimation(fonts.eyes,self.anim,speed=5)
+      if scroll:
+        if self.name=='left':
+          text='   '+message
+        else:
+          text=message+'   '
+        self.eye.scrollString(fonts.textFont1,text,4)
+      else:
+        self.eye.playAnimation2(fonts.eyes,self.anim)
 
 def loadAnims():
   data={}
@@ -41,10 +51,52 @@ def loadAnims():
 
 anims=loadAnims()
 
-while True:
-  threadLeft=myThread(1,'left',leftEye,anims['stareAndBlink']['left'])
-  threadRight=myThread(2,'right',rightEye,anims['stareAndBlink']['right'])
+def nextAnim():
+  global currentAnim,scroll,message
+  scroll=False
+  r=random.randint(0,14)
+  #r=9
+  if r==1:
+      currentAnim='stareAndBlink'
+  elif r==1:
+      currentAnim='stareFadeOutIn'
+  elif r==2:
+    currentAnim='leftABit'
+  elif r==3:
+    currentAnim='left'
+  elif r==4:
+    currentAnim='rightABit'
+  elif r==5:
+    currentAnim='right'
+  elif r==6:
+    currentAnim='crossEyedMiddle'
+  elif r==7:
+    currentAnim='growEyes'
+  elif r==8:
+    currentAnim='flashEyes'
+  elif r==9:
+    currentAnim='loopLeft'
+  elif r==10:
+    currentAnim='ghosts1'
+  elif r==11:
+    message=' Trick or Treat '
+    scroll=True
+  elif r==12:
+    message=' Spooky '
+    scroll=True
+  elif r>12 and r<15:
+    currentAnim='stareAndBlink'
+
+
+def doFrame():
+  threadLeft=myThread(1,'left',leftEye,anims[currentAnim]['left'])
+  threadRight=myThread(2,'right',rightEye,anims[currentAnim]['right'])
   threadLeft.start()
   threadRight.start()
   threadLeft.join()
   threadRight.join()
+
+
+while True:
+  nextAnim()
+  doFrame()

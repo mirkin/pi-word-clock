@@ -1,26 +1,234 @@
 {
   "stareAndBlink": {
     "left": [
-      "straight",
-      "straightBlink1",
-      "straightBlink2",
-      "straightBlink3",
-      "all_off",
-      "straightBlink3",
-      "straightBlink2",
-      "straightBlink1",
-      "straight"
+      {"name":"straight","delay":3,"b":15},
+      {"name":"straightBlink1","delay":0.02,"b":10},
+      {"name":"straightBlink2","delay":0.02,"b":10},
+      {"name":"straightBlink3","delay":0.02,"b":10},
+      {"name":"all_off","delay":0.02,"b":10},
+      {"name":"straightBlink3","delay":0.02,"b":10},
+      {"name":"straightBlink2","delay":0.02,"b":10},
+      {"name":"straightBlink1","delay":0.02,"b":10},
+      {"name":"straight","delay":0.02,"b":10}
     ],
-    "right": [
-      "straight",
-      "straightBlink1",
-      "straightBlink2",
-      "straightBlink3",
-      "all_off",
-      "straightBlink3",
-      "straightBlink2",
-      "straightBlink1",
-      "straight"
+     "right": [
+      {"name":"straight","delay":3,"b":10},
+      {"name":"straightBlink1","delay":0.02,"b":10},
+      {"name":"straightBlink2","delay":0.02,"b":10},
+      {"name":"straightBlink3","delay":0.02,"b":10},
+      {"name":"all_off","delay":0.02,"b":10},
+      {"name":"straightBlink3","delay":0.02,"b":10},
+      {"name":"straightBlink2","delay":0.02,"b":10},
+      {"name":"straightBlink1","delay":0.02,"b":10},
+      {"name":"straight","delay":0.02,"b":10}
+    ]
+  },
+  "flashEyes": {
+    "left": [
+      {"name":"straight","delay":0.02,"b":15},
+      {"name":"all_off","delay":0.1,"b":15},
+      {"name":"straight","delay":0.1,"b":15},
+      {"name":"all_off","delay":0.1,"b":15},
+      {"name":"straight","delay":0.1,"b":15},
+      {"name":"all_off","delay":0.1,"b":15},
+      {"name":"straight","delay":0.1,"b":15},
+      {"name":"all_off","delay":0.1,"b":15},
+      {"name":"straight","delay":0.1,"b":15}
+    ],
+     "right": [
+      {"name":"straight","delay":0.02,"b":15},
+      {"name":"all_off","delay":0.1,"b":15},
+      {"name":"straight","delay":0.1,"b":15},
+      {"name":"all_off","delay":0.1,"b":15},
+      {"name":"straight","delay":0.1,"b":15},
+      {"name":"all_off","delay":0.1,"b":15},
+      {"name":"straight","delay":0.1,"b":15},
+       {"name":"all_off","delay":0.1,"b":15},
+      {"name":"straight","delay":0.1,"b":15}
+    ]
+  },
+  "loopLeft": {
+    "left": [
+      {"name":"straight","delay":0.05,"b":10},
+      {"name":"left1","delay":0.05,"b":15},
+      {"name":"left2","delay":0.05,"b":15},
+      {"name":"left3","delay":0.05,"b":15},
+      {"name":"left4","delay":0.05,"b":15},
+      {"name":"noEyeball","delay":0.05,"b":15},
+      {"name":"right4","delay":0.05,"b":15},
+      {"name":"right3","delay":0.05,"b":15},
+      {"name":"right2","delay":0.05,"b":15},
+      {"name":"right1","delay":0.05,"b":15},
+      {"name":"straight","delay":0.05,"b":10},
+      {"name":"left1","delay":0.05,"b":15},
+      {"name":"left2","delay":0.05,"b":15},
+      {"name":"left3","delay":0.05,"b":15},
+      {"name":"left4","delay":0.05,"b":15},
+      {"name":"noEyeball","delay":0.05,"b":15},
+      {"name":"right4","delay":0.05,"b":15},
+      {"name":"right3","delay":0.05,"b":15},
+      {"name":"right2","delay":0.05,"b":15},
+      {"name":"right1","delay":0.05,"b":15},
+      {"name":"straight","delay":0.05,"b":10}
+    ],
+     "right": [
+      {"name":"straight","delay":0.05,"b":10},
+      {"name":"left1","delay":0.05,"b":15},
+      {"name":"left2","delay":0.05,"b":15},
+      {"name":"left3","delay":0.05,"b":15},
+      {"name":"left4","delay":0.05,"b":15},
+      {"name":"noEyeball","delay":0.05,"b":15},
+      {"name":"right4","delay":0.05,"b":15},
+      {"name":"right3","delay":0.05,"b":15},
+      {"name":"right2","delay":0.05,"b":15},
+      {"name":"right1","delay":0.05,"b":15},
+      {"name":"straight","delay":0.05,"b":10},
+      {"name":"left1","delay":0.05,"b":15},
+      {"name":"left2","delay":0.05,"b":15},
+      {"name":"left3","delay":0.05,"b":15},
+      {"name":"left4","delay":0.05,"b":15},
+      {"name":"noEyeball","delay":0.05,"b":15},
+      {"name":"right4","delay":0.05,"b":15},
+      {"name":"right3","delay":0.05,"b":15},
+      {"name":"right2","delay":0.05,"b":15},
+      {"name":"right1","delay":0.05,"b":15},
+      {"name":"straight","delay":0.05,"b":10}
+    ]
+  },
+  "growEyes": {
+    "left": [
+      {"name":"straight","delay":0.02,"b":10},
+      {"name":"straightX2","delay":2.0,"b":15},
+      {"name":"straight","delay":0.02,"b":10}
+    ],
+     "right": [
+      {"name":"straight","delay":0.02,"b":10},
+      {"name":"straightX2","delay":2.0,"b":15},
+      {"name":"straight","delay":0.02,"b":10}
+    ]
+  },
+  "leftABit": {
+    "left": [
+      {"name":"straight","delay":0.02,"b":10},
+      {"name":"left1","delay":2.0,"b":10},
+      {"name":"straight","delay":0.02,"b":10}
+    ],
+     "right": [
+      {"name":"straight","delay":0.02,"b":10},
+      {"name":"left1","delay":2.0,"b":10},
+      {"name":"straight","delay":0.02,"b":10}
+    ]
+  },
+  "crossEyedMiddle": {
+    "left": [
+      {"name":"straight","delay":0.02,"b":10},
+      {"name":"right1","delay":0.02,"b":10},
+      {"name":"right2","delay":2.0,"b":10},
+      {"name":"right1","delay":0.02,"b":10},
+      {"name":"straight","delay":0.02,"b":10}
+    ],
+     "right": [
+      {"name":"straight","delay":0.02,"b":10},
+      {"name":"left1","delay":0.02,"b":10},
+      {"name":"left2","delay":2.0,"b":10},
+      {"name":"left1","delay":0.02,"b":10},
+      {"name":"straight","delay":0.02,"b":10}
+    ]
+  },
+  "rightABit": {
+    "left": [
+      {"name":"straight","delay":0.02,"b":10},
+      {"name":"right1","delay":2.0,"b":10},
+      {"name":"straight","delay":0.02,"b":10}
+    ],
+     "right": [
+      {"name":"straight","delay":0.02,"b":10},
+      {"name":"right1","delay":2.0,"b":10},
+      {"name":"straight","delay":0.02,"b":10}
+    ]
+  },
+  "ghosts1": {
+    "left": [
+      {"name":"straight","delay":0.02,"b":10},
+      {"name":"ghost1","delay":2.0,"b":15},
+      {"name":"ghost2","delay":2.0,"b":15},
+      {"name":"straight","delay":0.02,"b":10}
+    ],
+     "right": [
+      {"name":"straight","delay":0.02,"b":10},
+      {"name":"ghost2","delay":2.0,"b":15},
+      {"name":"ghost1","delay":2.0,"b":15},
+      {"name":"straight","delay":0.02,"b":10}
+    ]
+  },
+  "left": {
+    "left": [
+      {"name":"straight","delay":0.02,"b":10},
+      {"name":"left1","delay":0.02,"b":10},
+      {"name":"left2","delay":2.0,"b":10},
+      {"name":"left1","delay":0.02,"b":10},
+      {"name":"straight","delay":0.02,"b":10}
+    ],
+     "right": [
+      {"name":"straight","delay":0.02,"b":10},
+      {"name":"left1","delay":0.02,"b":10},
+      {"name":"left2","delay":2.0,"b":10},
+      {"name":"left1","delay":0.02,"b":10},
+      {"name":"straight","delay":0.02,"b":10}
+    ]
+  },
+  "right": {
+    "left": [
+      {"name":"straight","delay":0.02,"b":10},
+      {"name":"right1","delay":0.02,"b":10},
+      {"name":"right2","delay":2.0,"b":10},
+      {"name":"right1","delay":0.02,"b":10},
+      {"name":"straight","delay":0.02,"b":10}
+    ],
+     "right": [
+      {"name":"straight","delay":0.02,"b":10},
+      {"name":"right1","delay":0.02,"b":10},
+      {"name":"right2","delay":2.0,"b":10},
+      {"name":"right1","delay":0.02,"b":10},
+      {"name":"straight","delay":0.02,"b":10}
+    ]
+  },
+  "stareFadeOutIn":{
+    "left":[
+      {"name":"straight","delay":0.02,"b":13},
+      {"name":"straight","delay":0.02,"b":12},
+      {"name":"straight","delay":0.02,"b":10},
+      {"name":"straight","delay":0.02,"b":8},
+      {"name":"straight","delay":0.02,"b":6},
+      {"name":"straight","delay":0.02,"b":4},
+      {"name":"straight","delay":0.02,"b":2},
+      {"name":"straight","delay":2,"b":0},
+      {"name":"straight","delay":0.02,"b":2},
+      {"name":"straight","delay":0.02,"b":4},
+      {"name":"straight","delay":0.02,"b":6},
+      {"name":"straight","delay":0.02,"b":8},
+      {"name":"straight","delay":0.02,"b":10},
+      {"name":"straight","delay":0.02,"b":12},
+      {"name":"straight","delay":0.02,"b":14},
+      {"name":"straight","delay":2,"b":15}
+    ],
+    "right":[
+      {"name":"straight","delay":0.02,"b":13},
+      {"name":"straight","delay":0.02,"b":12},
+      {"name":"straight","delay":0.02,"b":10},
+      {"name":"straight","delay":0.02,"b":8},
+      {"name":"straight","delay":0.02,"b":6},
+      {"name":"straight","delay":0.02,"b":4},
+      {"name":"straight","delay":0.02,"b":2},
+      {"name":"straight","delay":2,"b":0},
+      {"name":"straight","delay":0.02,"b":2},
+      {"name":"straight","delay":0.02,"b":4},
+      {"name":"straight","delay":0.02,"b":6},
+      {"name":"straight","delay":0.02,"b":8},
+      {"name":"straight","delay":0.02,"b":10},
+      {"name":"straight","delay":0.02,"b":12},
+      {"name":"straight","delay":0.02,"b":14},
+      {"name":"straight","delay":2,"b":15}
     ]
   }
 }
