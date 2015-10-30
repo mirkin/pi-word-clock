@@ -33,7 +33,7 @@ class myThread (threading.Thread):
           text='   '+message
         else:
           text=message+'   '
-        self.eye.scrollString(fonts.textFont1,text,4)
+        self.eye.scrollString(fonts.textFont1,text,5)
       else:
         self.eye.playAnimation2(fonts.eyes,self.anim)
 
@@ -54,8 +54,8 @@ anims=loadAnims()
 def nextAnim():
   global currentAnim,scroll,message
   scroll=False
-  r=random.randint(0,14)
-  #r=9
+  r=random.randint(0,20)
+  #r=20
   if r==1:
       currentAnim='stareAndBlink'
   elif r==1:
@@ -86,6 +86,18 @@ def nextAnim():
     scroll=True
   elif r>12 and r<15:
     currentAnim='stareAndBlink'
+  elif r==15:
+    currentAnim='upABit'
+  elif r==16:
+    currentAnim='downABit'
+  elif r==17:
+    currentAnim='up'
+  elif r==18:
+    currentAnim='down'
+  elif r==19:
+    currentAnim='winkLeft'
+  elif r==20:
+    currentAnim='winkRight'
 
 
 def doFrame():
