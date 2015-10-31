@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import time,os,datetime,sys,argparse,fonts,I2CGrid,threading,json,random
+#import UnicornGrid
 print ("Eyes (0) (0)")
 currentAnim='stareAndBlink'
 parser=argparse.ArgumentParser()
@@ -19,6 +20,10 @@ fonts.eyes=leftEye.rotateFontCCW(fonts.eyes)
 fonts.textFont1=leftEye.rotateFontCCW(fonts.textFont1)
 scroll=True
 message=' Spooky '
+
+#unicorn=UnicornGrid.UnicornGrid()
+#unicorn.setBrightness(0.2)
+#unicorn.showChar(fonts.eyes['straight'])
 
 class myThread (threading.Thread):
   def __init__(self, threadID, name, eye, anim):
@@ -54,8 +59,8 @@ anims=loadAnims()
 def nextAnim():
   global currentAnim,scroll,message
   scroll=False
-  r=random.randint(0,20)
-  #r=20
+  r=random.randint(0,30)
+  #r=29
   if r==1:
       currentAnim='stareAndBlink'
   elif r==1:
@@ -98,7 +103,22 @@ def nextAnim():
     currentAnim='winkLeft'
   elif r==20:
     currentAnim='winkRight'
-
+  elif r==21:
+    currentAnim='growEyes2'
+  elif r>21 and r<25:
+    currentAnim='growEyes2'
+    doFrame()
+    doFrame()
+  elif r==25:
+    currentAnim='downLeftABit'
+  elif r==26:
+    currentAnim='downRightABit'
+  elif r==27:
+    currentAnim='upLeftABit'
+  elif r==28:
+    currentAnim='upRightABit'
+  elif r==29:
+    currentAnim='roll'
 
 def doFrame():
   threadLeft=myThread(1,'left',leftEye,anims[currentAnim]['left'])
