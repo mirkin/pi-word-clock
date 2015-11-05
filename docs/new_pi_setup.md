@@ -12,8 +12,9 @@
 - [I2C Setup](#i2c-setup)
 - [User Management](#user-management)
 - [Setup .local domain](#setup-.local-domain)
-- [Disk Usage](#Disk-Usage)
-- [Pimoroni Unicorn Hat](#Pimoroni-Unicorn-Hat)
+- [Disk Usage](#disk-usage)
+- [Pimoroni Unicorn Hat](#pimoroni-unicorn-hat)
+- [Run on Startup](#run-on-startup)
 
 ##About
 We have so many Raspberry Pi computers in our household, so we set up a collection of useful information so we can share our knowledge and quicky set up new systems.
