@@ -1,13 +1,17 @@
-Pi Word Clock
-==============
+Pi LED Matrix tools - Word Clock/Eyes/Text Scroller
+===================================================
 
 My 7 and 8yr old kids wanted to get started with electronics and programming,
- so we started off with an LED word clock.
+ so we started off with an LED word clock. Since then, we have made a lot of
+ projects with the Pi and we upload the Marix code (Word Clock, Scrolling Text,
+ Halloween Eyes) here.
+
+ See them in action [I2C Version](http://www.youtube.com/watch?v=Dd1wtXz80Cs) | [Unicorn Hat Colour Version](http://www.youtube.com/watch?v=QlTQ89PbJo4) | [Halloween LED Eyes](https://www.youtube.com/watch?v=rT0zYCxDIbY)
+
+ Click the image below for the first project we made.
 
 [![Raspberry Pi Word Clock](http://gurgleapps.com/assets/images/blog/raspberry-pi-word-clock-460x276.jpg)]
 (http://www.youtube.com/watch?v=Dd1wtXz80Cs)
-
-See them in action [I2C Version](http://www.youtube.com/watch?v=Dd1wtXz80Cs) [Unicorn Hat Colour Version](http://www.youtube.com/watch?v=QlTQ89PbJo4)
 
 Code & Images for making Word Clocks included. We used Raspberry Pi and 8x8 matrix. Works with I2C Adafruit Backpack and the Unicorn Hat from Pimoroni.
 
