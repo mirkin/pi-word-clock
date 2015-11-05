@@ -378,7 +378,59 @@ sudo pip install unicornhat
 sudo chmod +x filename.py
 
 ##Run at startup
-Put file in /etc/init.d (fpr example alexscript.sh)
-sudo update-rc.d alexscript.sh defaults
+Put file in /etc/init.d (for example start-eyes and make sure it's executable chmod +x start-eyes)
+sudo update-rc.d start-eyes defaults
 
+You can follow a pattern to make these startup daemons a little cleaner and allow start and stop
+here is an example for a python script that makes LED Eyes light up. 
+
+```bash
+#!/bin/bash
+#/etc/init.d/led-eyes
+### BEGIN INIT INFO
+# Provides: led-eyes
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: to start led matrix eyes
+# Description:       to start led matrix eyes
+### END INIT INFO
+
+# Using the lsb functions to perform the operations.
+. /lib/lsb/init-functions
+# Process name ( For display )
+name=`basename $0`
+echo "Name -> $name"
+pid_file="/var/run/$name.pid"
+
+case "$1" in
+    start)
+        log_daemon_msg "Starting LED Eyes"
+        start-stop-daemon --start --background --pidfile $pid_file --make-pidfile --exec /home/pi/dev/pi-word-clock/python/Eyes.py
+        ;;
+    stop)
+        log_daemon_msg "Stopping LED Eyes"
+        start-stop-daemon --stop --pidfile $pid_file
+        ;;
+    *)
+        echo "usage start-eyes start:stop"
+        exit 1
+        ;;
+esac
+exit 0
+```
+
+If you want to start/stop this deamon from the shell use a symbolic link so it can be found on the PATH
+```bash
+sudo ln -s /etc/init.d/start-eyes /usr/bin/start-eyes
+```
+
+##Symoblic Link
+
+```bash
+ln -s target source
+```
+
+target is the existing link, source is the new symoblic link
 
