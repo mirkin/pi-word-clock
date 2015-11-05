@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import time,os,datetime,sys,argparse,fonts,I2CGrid,threading,json,random
+import time,os,datetime,sys,argparse,fonts,I2CGrid,threading,json,random,atexit,signal
 #import UnicornGrid
 print ("Eyes (0) (0)")
 currentAnim='stareAndBlink'
@@ -24,6 +24,15 @@ message=' Spooky '
 #unicorn=UnicornGrid.UnicornGrid()
 #unicorn.setBrightness(0.2)
 #unicorn.showChar(fonts.eyes['straight'])
+
+#Code to turn the LED off when stopped or killed
+def cleanup():
+  print 'Terminating'
+  leftEye.showChar(fonts.shapes['empty'])
+  rightEye.showChar(fonts.shapes['empty'])
+
+atexit.register(cleanup)
+signal.signal(signal.SIGTERM,cleanup)
 
 class myThread (threading.Thread):
   def __init__(self, threadID, name, eye, anim):
@@ -128,7 +137,9 @@ def doFrame():
   threadLeft.join()
   threadRight.join()
 
-
-while True:
-  nextAnim()
-  doFrame()
+try:
+  while True:
+    nextAnim()
+    doFrame()
+finally:
+  cleanup()
