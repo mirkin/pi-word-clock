@@ -8,13 +8,13 @@
 - [Static IP Setup](#static-ip-setup)
 - [Git setup](#git-setup)
 - [Wifi Setup ](#wifi-setup )
-- [Remove Wolfram](#Remove-Wolfram)
+- [Remove Wolfram](#remove-wolfram)
 - [I2C Setup](#i2c-setup)
 - [User Management](#user-management)
-- [Setup .local domain](#setup-.local-domain)
+- [Setup .local domain](#setup-local-domain)
 - [Disk Usage](#disk-usage)
 - [Pimoroni Unicorn Hat](#pimoroni-unicorn-hat)
-- [Run on Startup](#run-on-startup)
+- [Run at Startup](#run-at-startup)
 
 ##About
 We have so many Raspberry Pi computers in our household, so we set up a collection of useful information so we can share our knowledge and quicky set up new systems.
@@ -150,6 +150,40 @@ I want to be able to browse and edit files on my Mac so
 sudo apt-get install netatalk
 ```
 Now I can log in at pi and use finder and all my favourite editing tools.
+
+
+##See Pi files in Windows Explorer
+
+Browse and edit files on the PC.
+
+Install Samba
+
+```bash
+sudo apt-get install samba samba-common-bin
+```
+
+Then edit /etc/samba/smb.conf
+
+```bash
+wins support = yes
+[pihome]
+   comment= Pi Home
+   path=/home/pi
+   browseable=Yes
+   writeable=Yes
+   only guest=no
+   create mask=0777
+   directory mask=0777
+   public=no
+```
+
+Set up your user and restart the service
+
+```bash
+sudo smbpasswd -a pi
+sudo service samba restart
+sudo 
+```
 
 ##Git setup
 ```bash
