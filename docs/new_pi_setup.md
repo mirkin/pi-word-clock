@@ -5,16 +5,20 @@
 - [MAC Put OS onto SD card](#mac-pu-os-onto-sd-card)
 - [MAC Setup](#mac-setup)
 - [See Pi Files in Mac Finder](#see-pi-files-in-mac-finder)
+- [See Pi Files on PC (Samba)](#see-pi-files-in-windows-explorer)
 - [Static IP Setup](#static-ip-setup)
 - [Git setup](#git-setup)
 - [Wifi Setup ](#wifi-setup )
 - [Remove Wolfram](#remove-wolfram)
 - [I2C Setup](#i2c-setup)
 - [User Management](#user-management)
+- [Setup VNC](#setup-vnc)
 - [Setup .local domain](#setup-local-domain)
 - [Disk Usage](#disk-usage)
 - [Pimoroni Unicorn Hat](#pimoroni-unicorn-hat)
 - [Run at Startup](#run-at-startup)
+- [Create symbolic link](#symbolic-link)
+- [Make file executable](#make-python-file-executable)
 
 ##About
 We have so many Raspberry Pi computers in our household, so we set up a collection of useful information so we can share our knowledge and quicky set up new systems.
@@ -409,9 +413,6 @@ sudo pip-3.2 install unicornhat
 sudo apt-get install python-pip python-dev
 sudo pip install unicornhat
 
-##Make Python File Executable
-sudo chmod +x filename.py
-
 ##Run at startup
 Put file in /etc/init.d (for example start-eyes and make sure it's executable chmod +x start-eyes)
 sudo update-rc.d start-eyes defaults
@@ -468,4 +469,7 @@ ln -s target source
 ```
 
 target is the existing link, source is the new symoblic link
+
+##Make Python File Executable
+sudo chmod +x filename.py
 

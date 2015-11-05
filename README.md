@@ -13,6 +13,11 @@ My 7 and 8yr old kids wanted to get started with electronics and programming,
 [![Raspberry Pi Word Clock](http://gurgleapps.com/assets/images/blog/raspberry-pi-word-clock-460x276.jpg)]
 (http://www.youtube.com/watch?v=Dd1wtXz80Cs)
 
+Click image below to see the LED Animated Eyes
+
+[![Raspberry Pi Word Clock](http://img.youtube.com/vi/rT0zYCxDIbY/0.jpg)]
+(https://www.youtube.com/watch?v=rT0zYCxDIbY)
+
 Code & Images for making Word Clocks included. We used Raspberry Pi and 8x8 matrix. Works with I2C Adafruit Backpack and the Unicorn Hat from Pimoroni.
 
 Code is Python & will possibly add a C version.
