@@ -473,3 +473,43 @@ target is the existing link, source is the new symoblic link
 ##Make Python File Executable
 sudo chmod +x filename.py
 
+
+##VIM
+
+hjkl to move cursor, ESC normal mode, i insert, A append :q! quit don't save, :wq save and quit
+u undo, ctrl r redo, U undo entire line, p inserts text just deleted after cursor, r replace char with next
+char to be typed, c change so ce then type will change end of a word c$ change to end of line
+ctrl g - line number and col etc.
+
+:! followed by any shell command to execute a command
+
+% will find matchin parentheses
+
+Navigating
+gg start, G end, lineNumber then G go to line
+crtl b page up ctry f page down
+
+Search
+/phrase
+search again n opposite dir N
+?phrase searches backward
+
+Replace
+:s/old/new
+:s/old/new/g all on line
+:%s/old/new/g whole file
+:%s/old/new/gc whole file but with prompts
+
+Copy Paste
+v for visual mode, move cursor y to yank (copy) p to paste
+
+Delete
+x del char or 8x delete 8
+dw delete from cursor to start of next word or d8w
+de delete frtom cursor to end of current word e8w
+d$ delete from cursor to end of line
+dd delete line 8dd delete 8 lines
+
+Motion - move to (AS Above can add number before to repeat X times)
+w,e,$(end of line),0(start of line)
+
