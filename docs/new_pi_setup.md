@@ -476,6 +476,14 @@ sudo chmod +x filename.py
 
 ##VIM
 
+config file is ~/.vimrc
+syntax on " syntax hilite
+set number " show line numbers
+filetype indent on " filetype specifix indents good for coding
+set wildmenu " shows autocomplete matches with tab
+set modeline " allows you to do make settings in a file using # vim: tabstop=8 etc.
+
+
 hjkl to move cursor, ESC normal mode, i insert, A append :q! quit don't save, :wq save and quit
 u undo, ctrl r redo, U undo entire line, p inserts text just deleted after cursor, r replace char with next
 char to be typed, c change so ce then type will change end of a word c$ change to end of line
@@ -501,7 +509,10 @@ Replace
 :%s/old/new/gc whole file but with prompts
 
 Copy Paste
-v for visual mode, move cursor y to yank (copy) p to paste
+v for visual mode (V for full lines), move cursor y to yank (copy) or d to cut p(after curs) P(b4 curs) to paste
+copy and paste from buffers "ay copy to a buffer "bP paste from b buffer
+ctrl-v visual-block
+gv get back to previous visual selection
 
 Delete
 x del char or 8x delete 8
@@ -513,3 +524,34 @@ dd delete line 8dd delete 8 lines
 Motion - move to (AS Above can add number before to repeat X times)
 w,e,$(end of line),0(start of line)
 
+Plugins crtlP fuzzy search
+cd ~/.vim
+git clone https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim
+add to .vimrc set runtimepath^=~/.vim/bundle/ctrlp.vim
+:helptags ~/.vim/bundle/ctrlp.vim/doc
+
+##Cool Stuff
+cmatrix
+libaa-bin then aafire
+
+##TMUX
+tmux ls list sessions
+tmux new -s sessionName start new with session name
+tmux a #0 attach session 0
+tmux a -t sessionName
+tmux kill-session -t sessionName
+tmux kill-session #0
+ctrl-b 
+% new pane split vertically
+" new pane split horizontally
+up/down/left/right move to next pane
+; previous pane
+q show pane numbers
+x kill pane
+z zoom toggle
+, name window
+w list windows
+d detatch
+t show a clock
+[ copy mode press enter to exit (like visual mode in vim)
+:resize-p -D 10 resize pane down 10 can use -U -L or -R
