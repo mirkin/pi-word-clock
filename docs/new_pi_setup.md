@@ -501,6 +501,7 @@ Search
 /phrase
 search again n opposite dir N
 ?phrase searches backward
+* go to next occurance of word currently under cursor
 
 Replace
 :s/old/new
@@ -508,11 +509,24 @@ Replace
 :%s/old/new/g whole file
 :%s/old/new/gc whole file but with prompts
 
+MAtching Quotes
+ci (change inner quote) then ' or " or { or <
+
 Copy Paste
 v for visual mode (V for full lines), move cursor y to yank (copy) or d to cut p(after curs) P(b4 curs) to paste
 copy and paste from buffers "ay copy to a buffer "bP paste from b buffer
 ctrl-v visual-block
 gv get back to previous visual selection
+yy yank line
+
+Save & Quit
+ZZ or :wq
+Quit no save
+ZQ or :q!
+
+Indent
+5>> indent 5 lines
+Vjjjjj> to do it visually 
 
 Delete
 x del char or 8x delete 8
@@ -523,6 +537,23 @@ dd delete line 8dd delete 8 lines
 
 Motion - move to (AS Above can add number before to repeat X times)
 w,e,$(end of line),0(start of line)
+
+Windows
+:split or :sp filename horizontal split ctrl-w s
+:vsplit or :vs or :vsp filename vertical split ctrl-w v
+ctrl-w arrows move cursor to window or ctrl w again to cycle
+ctrl-w _ maximize window = all equal size
+:hide close current window ctrl-w q
+:only close all but this
+10 ctrl-w + increase size by 10 - decrease
+:qa quit all
+:wqa :xa save all quit
+
+Tabs vim -p file 1 file2 file3
+gt gT     normal mode switch tab
+2gt numbred tab
+:tabn :tabp prev next tab
+:tabedit filename
 
 Plugins crtlP fuzzy search
 cd ~/.vim
