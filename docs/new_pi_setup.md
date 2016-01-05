@@ -20,7 +20,7 @@
 - [Create symbolic link](#symbolic-link)
 - [Make file executable](#make-python-file-executable)
 
-##About
+##Aboutgit remote set-url origin git@github.com:USERNAME/OTHERREPOSITORY.git
 We have so many Raspberry Pi computers in our household, so we set up a collection of useful information so we can share our knowledge and quicky set up new systems.
 
 ##MAC Put OS onto SD card 
@@ -372,6 +372,11 @@ Useful if you get a dynamic IP from your DHCP or even if you have a static IP an
 sudo apt-get install avahi-daemon
 ```
 
+##Sudo Preserve Environment Variables
+```bash
+sudo -E
+```
+
 ##Disk Usage
 Useful to know what is taking up space if you only use a small 4Gig SD.
 
@@ -380,6 +385,29 @@ sudo du -sh /*
 sudo du -sh /dirname/*
 ```
 The h option shows info in “Human Readable Format“ bytes,k,meg,gig instead of disk blocks. The s option will stop it reporting on subdirectories 
+
+##GPIO 
+setup pin 8
+```bash
+sudo echo '8' > /sys/class/gpio/export
+```
+There will now be pin 8 under /sys/class/gpio
+set pin 8 as an output
+```bash
+sudo echo 'out' > /sys/class/gpio/gpio8/direction
+```
+set pin 8 to high
+```bash
+sudo echo '1' > /sys/class/gpio/gpio8/value
+```
+clean up
+```bash
+sudo echo '8' > /sys/class/gpio/unexport
+```
+Permission Denied then use tee
+```bash
+echo '8' | sudo tee /sys/class/gpio/unexport
+```
 
 ##OpenCV Python
 ```bash
@@ -402,7 +430,9 @@ Only uses 3 pins GPIO 18, +5V and Ground. To match up with the unicorn hat and p
 
 Software
 https://github.com/pimoroni/UnicornHat
+```bash
 \curl -sS get.pimoroni.com/unicornhat | bash
+```
 
 Or
 
@@ -473,8 +503,45 @@ target is the existing link, source is the new symoblic link
 ##Make Python File Executable
 sudo chmod +x filename.py
 
+##SSH-Keys
+Log into client and Generate key 
+ssh-keygen -t rsa -b 4096
+Copy public key to remote server 
+scp .ssh/id_rsa.pub alex@alexpi32.local:.ssh/new_public_key
+Log into remote and add it to authorized keys
+cat new_public_key >> authorized_keys
+If you use a passphrase then ss-agent needs to know so you don't have to keep typing the passphrase in.
+ssh-add ~/.ssh/id_rsa
+If you get Could not open a connection to your authentication agent
+check it's running and try again
+eval `ssh-agent -s`
+
+GITHUB
+add your id_rsa.pub to github over website under settings
+Test
+ssh -T git@github.com
+
+Check remote and change to ssh if necessary
+git remote -v
+git remote set-url origin git@github.com:mirkin/reponame.git
+
+
+##Search Hackers
+Failed logins
+sudo cat /var/log/auth.log | grep 'authentication'
+
+
+##Shell
+use vi mode editing in the shell
+set -o vi  
 
 ##VIM
+had to change version to get powerline working
+sudo apt-get install vim-nox 
+
+Buffer = in-memory text can have many
+Window = viewport of buffer can tile and split
+Tab = Collection of windows
 
 config file is ~/.vimrc
 syntax on " syntax hilite
@@ -484,7 +551,7 @@ set wildmenu " shows autocomplete matches with tab
 set modeline " allows you to do make settings in a file using # vim: tabstop=8 etc.
 
 
-hjkl to move cursor, ESC normal mode, i insert, A append :q! quit don't save, :wq save and quit
+hjkl to move cursor, ESC normal mode, i insert, a append :q! quit don't save, :wq save and quit
 u undo, ctrl r redo, U undo entire line, p inserts text just deleted after cursor, r replace char with next
 char to be typed, c change so ce then type will change end of a word c$ change to end of line
 ctrl g - line number and col etc.
@@ -496,12 +563,24 @@ ctrl g - line number and col etc.
 Navigating
 gg start, G end, lineNumber then G go to line
 crtl b page up ctry f page down
+w move in words W move in WORDS b B
+0 start of line $ end of line
+^ first non whitespace char useful for coding
+`` previous cursor position
+'' previous line
+
 
 Search
 /phrase
-search again n opposite dir N
 ?phrase searches backward
+search again n opposite dir N
 * go to next occurance of word currently under cursor
+# as above but backward
+g* go to next even if it's part of another word eg. set settings
+g#
+n next result forward
+N backward
+
 
 Replace
 :s/old/new
@@ -509,8 +588,40 @@ Replace
 :%s/old/new/g whole file
 :%s/old/new/gc whole file but with prompts
 
+Like mouse selecting and typing over:
+cW change till end of word
+3cW change 3 words
+BcW change from beginning to end of word 
+ci" change innder text beween "" can use (<etc.
+yiw yank inner word copy current word even if cursor not at start
+viwp visually select inner word and paste over with what was coppied
+shift-r replace, just start typing over everything
+A append at end
+I insert at start
+shift i skip whitespace and insert
+s delete char at cursor and enter insert mode
+S clear line and being insert
+C delete from cursor to end and begin insert mode
+o new line after
+O new line before
+
+Copy Paste
+y yank 2yW copy 2 WORDS
+p paste after cursor
+P paste before
+
+Marking
+ma mb ... mz set marker in named register a-z
+'a 'z goto start of line of marker
+`a `z goto marker
+
 MAtching Quotes
 ci (change inner quote) then ' or " or { or <
+
+Autocomplete
+ctrl-n
+ctrl-p suggest match from start of current word ctrl-n and ctrl-p to select menu
+
 
 Copy Paste
 v for visual mode (V for full lines), move cursor y to yank (copy) or d to cut p(after curs) P(b4 curs) to paste
@@ -519,10 +630,34 @@ ctrl-v visual-block
 gv get back to previous visual selection
 yy yank line
 
+ctrl v visual block mode
+*while in visual block mode *
+motions work to change block eg 20l or 10j
+o changes corner that defines the block very useful
+I,A - insert at top when done it will be repeated on each line
+d delte block
+r replace all chars in block with next char pressed
+. repeat
+: command mode will automatically preffix command with just selected text
+:'<,'>
+Markers are
+'< start line
+'> end line
+`< start character
+`> end character
+So to replace red with green for current selection
+:'<,'>s/red/green/g
+gv - reselect last visual selection
+
+
+
 Save & Quit
 ZZ or :wq
 Quit no save
 ZQ or :q!
+
+OPEN
+:E file browser
 
 Indent
 5>> indent 5 lines
@@ -537,6 +672,32 @@ dd delete line 8dd delete 8 lines
 
 Motion - move to (AS Above can add number before to repeat X times)
 w,e,$(end of line),0(start of line)
+w move word
+W move WORD
+b back word
+B back WORD
+e forward to end of next word
+E forward to end of next WORD
+f(char) forward to next char [on same line]
+F(char) back to prev char
+t and T as above but just before char
+60i#<esc> insert 60 # signs
+
+
+Scrolling
+zz current linee to middle of screen
+zt top
+zb bottom
+ctrl-e ctrl-y step up/down a line
+ctrl-d ctrl-u 1/2 page
+ctrl-b ctrl-f page
+
+Buffers
+:ls list
+:bn next buffer
+:bp prev
+:b2 buffer 2
+:b filen    partial filename tab will auto complete
 
 Windows
 :split or :sp filename horizontal split ctrl-w s
@@ -548,18 +709,40 @@ ctrl-w _ maximize window = all equal size
 10 ctrl-w + increase size by 10 - decrease
 :qa quit all
 :wqa :xa save all quit
+ctrl-w x exchange window with neigbour
 
 Tabs vim -p file 1 file2 file3
 gt gT     normal mode switch tab
 2gt numbred tab
 :tabn :tabp prev next tab
 :tabedit filename
+:tabclose
 
 Plugins crtlP fuzzy search
 cd ~/.vim
 git clone https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim
 add to .vimrc set runtimepath^=~/.vim/bundle/ctrlp.vim
 :helptags ~/.vim/bundle/ctrlp.vim/doc
+
+find out where it's looking for scripts/plugins etc
+:set runtimepath? 
+add to .vimrc to add to that path
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+Sessions 
+Save
+:mksession or :mks ~/.vim/sessions/mysession.vim
+Open
+:source ~/.vim/session.mysession.vim
+Or
+vim -S ~/.vim/session.mysession.vim
+Overwrite session 
+:mks!
+
+Recording
+qa to start recording to register a qz to record to register z
+q in normal mode will stop
+@a will play from register a
 
 ##Cool Stuff
 cmatrix
@@ -586,3 +769,19 @@ d detatch
 t show a clock
 [ copy mode press enter to exit (like visual mode in vim)
 :resize-p -D 10 resize pane down 10 can use -U -L or -R
+
+##Powerline
+Need Source Code Pro for Powerline on iterm.
+
+pip install --user git+git://github.com/Lokaltog/powerline
+
+wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
+mkdir -p ~/.fonts/ && mv PowerlineSymbols.otf ~/.fonts/
+fc-cache -vf ~/.fonts
+mkdir -p ~/.config/fontconfig/conf.d/ && mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+
+##Pandoc convert document formats
+sudo apt-get install pandox
+sudo apt-get install texlive [large 600megish]
+
+
