@@ -559,7 +559,10 @@ ctrl g - line number and col etc.
 **USEFUL**
 J - Join current line with next line, brings next line up and appends
 
+SHELL STUFF
 :! followed by any shell command to execute a command
+ctrl-z suspends vim so you can do work in your shell fg resumes vim
+:sh starts new subshell and ctrl-d or exit to get back to vim
 
 % will find matchin parentheses
 
