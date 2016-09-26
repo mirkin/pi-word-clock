@@ -551,10 +551,13 @@ set wildmenu " shows autocomplete matches with tab
 set modeline " allows you to do make settings in a file using # vim: tabstop=8 etc.
 
 
-hjkl to move cursor, ESC normal mode, i insert, a append :q! quit don't save, :wq save and quit
+hjkl to move cursor, ESC  or ctrl-[ normal mode, i insert, a append :q! quit don't save, :wq save and quit
 u undo, ctrl r redo, U undo entire line, p inserts text just deleted after cursor, r replace char with next
 char to be typed, c change so ce then type will change end of a word c$ change to end of line
 ctrl g - line number and col etc.
+
+**USEFUL**
+J - Join current line with next line, brings next line up and appends
 
 :! followed by any shell command to execute a command
 
@@ -562,13 +565,29 @@ ctrl g - line number and col etc.
 
 Navigating
 gg start, G end, lineNumber then G go to line
+G201 go to line 201
 crtl b page up ctry f page down
 w move in words W move in WORDS b B
 0 start of line $ end of line
+A append at end of line
 ^ first non whitespace char useful for coding
+I same as above but switch to insert mode
 `` previous cursor position
 '' previous line
+f{char} [find] (move cursor to next occurance of char on that line ; will repeat the last search and , will repeat in reverse) 
+;,
+t [to] - same as above but one char to the left
+3fb find 3rd b on line from cursor
+F and T do the same but backwards
 
+Insert Normal Mode
+ctrl-o - from insert mode to normal mode for one command and then it switches back so you don't have to. So you can be editing and if you want to have the line in the middle of the screen (zz) you don't have to press escape zz i you just do ctrl-o zz and continue.
+
+
+Insert Mode
+ctrl-h backspace
+ctrl-w delete back word
+ctrl-u delete back to start of line
 
 Search
 /phrase
@@ -593,27 +612,23 @@ cW change till end of word
 3cW change 3 words
 BcW change from beginning to end of word 
 ci" change innder text beween "" can use (<etc.
+cit change inner tag <></>
 yiw yank inner word copy current word even if cursor not at start
 viwp visually select inner word and paste over with what was coppied
-shift-r replace, just start typing over everything
+R replace, just start typing over everything
 A append at end
-I insert at start
-shift i skip whitespace and insert
+I insert at start like ^ but insert mode
 s delete char at cursor and enter insert mode
 S clear line and being insert
 C delete from cursor to end and begin insert mode
 o new line after
 O new line before
 
-Copy Paste
-y yank 2yW copy 2 WORDS
-p paste after cursor
-P paste before
-
 Marking
 ma mb ... mz set marker in named register a-z
 'a 'z goto start of line of marker
 `a `z goto marker
+:marks show all marks
 
 MAtching Quotes
 ci (change inner quote) then ' or " or { or <
@@ -622,20 +637,46 @@ Autocomplete
 ctrl-n
 ctrl-p suggest match from start of current word ctrl-n and ctrl-p to select menu
 
+Replace Mode [type over]
+R
+gR treats tabs as spaces
 
 Copy Paste
-v for visual mode (V for full lines), move cursor y to yank (copy) or d to cut p(after curs) P(b4 curs) to paste
-copy and paste from buffers "ay copy to a buffer "bP paste from b buffer
+v for visual mode char wise
+V for full lines  move cursor y to yank (copy), d to cut, c to change
 ctrl-v visual-block
+gv reselect last visual selection
+<ctrl-g> in visual mode switches to select which is like regular text editor selections
+p paste after cursor
+P paste before
+copy and paste from buffers "ay copy to a buffer "bP paste from b buffer
 gv get back to previous visual selection
 yy yank line
+y yank 2yW copy 2 WORDS
+:364y yank line 364
+:364,400y yank line 364 to 400
+:364,400t500 yank lines and paste under line 500
+:364,400t yank lines and paste under current line 
+MOVE
+:364m 400 move line 364 to after 400
+:364,370m 400
+yt{char} yank till before {char} to right
+yT{char} yank till after {char} to left
+yf{char} yank forward to char to right
+yF{char} yank yank left to char
+"ay yank to register a
+"ap put from register a
+ctrl-r{register} paste from register in insert mode. Saves switching 0 is default register.
+ctrl-r ctrl-p {register} same but fixes indentation
 
-ctrl v visual block mode
 *while in visual block mode *
 motions work to change block eg 20l or 10j
-o changes corner that defines the block very useful
+o changes corner that defines the block VERY USEFUL
 I,A - insert at top when done it will be repeated on each line
 d delte block
+U uppercase
+u lower
+~ toggle case
 r replace all chars in block with next char pressed
 . repeat
 : command mode will automatically preffix command with just selected text
@@ -648,6 +689,7 @@ Markers are
 So to replace red with green for current selection
 :'<,'>s/red/green/g
 gv - reselect last visual selection
+vit - select inner tag
 
 
 
@@ -669,6 +711,9 @@ dw delete from cursor to start of next word or d8w
 de delete frtom cursor to end of current word e8w
 d$ delete from cursor to end of line
 dd delete line 8dd delete 8 lines
+daw delete a word
+diw delete inner word
+dap delete a paragraph
 
 Motion - move to (AS Above can add number before to repeat X times)
 w,e,$(end of line),0(start of line)
@@ -685,12 +730,13 @@ t and T as above but just before char
 
 
 Scrolling
-zz current linee to middle of screen
+zz current line to middle of screen COOL
 zt top
 zb bottom
 ctrl-e ctrl-y step up/down a line
 ctrl-d ctrl-u 1/2 page
 ctrl-b ctrl-f page
+ctrl-o switches from insert to normal temporarlily while you do one of these commands.
 
 Buffers
 :ls list
@@ -718,6 +764,14 @@ gt gT     normal mode switch tab
 :tabedit filename
 :tabclose
 
+Folding
+set foldmethod=syntax or manual indent
+zM fold everything
+zR unfold everything
+za toggle open/close a fold
+zm fold more
+zr fold less
+
 Plugins crtlP fuzzy search
 cd ~/.vim
 git clone https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim
@@ -728,6 +782,14 @@ find out where it's looking for scripts/plugins etc
 :set runtimepath? 
 add to .vimrc to add to that path
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+Plug 'Raimondi/delimitMate'
+sorts matching pairs ("")etc
+shift tab to skip to end of delimeter
+ctrl-g g to skip contiguous.
+" enable delimit mate plugin to expand spaces and cr
+ 73 let delimitMate_expand_space=1
+ 74 let delimitMate_expand_cr=1
 
 Sessions 
 Save
@@ -743,6 +805,62 @@ Recording
 qa to start recording to register a qz to record to register z
 q in normal mode will stop
 @a will play from register a
+
+Case
+g~ swap case
+gu lowercase
+gU uppercase
+gUaw current word upper
+gUap current paragraph upper
+gUit go uppercase in tag <></>
+
+Maths
+ctrl a and ctrl x will increase or decrease a number
+you don't need to be on the number it will find the next one on that line
+20<ctrl-a> add 20
+10<ctrl-x> subtract 10
+Even works wth bases 0xef for example
+<ctrl-r>=2*15<CR> while in insert mode puts result of maths expression at cursor
+
+Running shell commands on current buffer
+:%!js-beautify -f - --type html
+:%!js-beautify -f - --type js -w 80
+
+Spelling
+:set spell turn it on
+[s to prev error
+]s to next error
+z= suggestions for current word
+zg add current word to dictionary
+zw remove current word from dic
+:set spellang=en_gb set dictionary
+<ctrl-x>s spelling suggestions from insert mode
+
+Special Chars
+<ctrl-v>065 while in insert mode would place an A at cursor
+<ctrl-v>u00bf will put the unicode char un
+<ctrl-k>12 insert char by digraph 12 being a half
+ga will show unicode value of current char at bottom of screen
+:digraph will show massive list of chars
+
+CTAGS
+JS
+npm install -g git+https://github.com/ramitos/jsctags.git
+jsctags piano-local.js -f | sort > tags
+Found this seems to work better with closures
+npm install -g javascript-ctags
+Exuberant version you can edit ~/.ctags which is in my github .dotfiles
+.vimrc set tags+=tags;$HOME so vim will search for tags file backwards up the tree
+:tago <ctrl-d> see tags
+b]
+<ctrl-]> from tag to definition
+<ctrl-t> navigate back through tag list history
+:tnext
+:tfirst
+:tlast
+:tprev
+:tag{keyword} with tab autocomplete
+:tjump{keyword}
 
 ##Cool Stuff
 cmatrix
