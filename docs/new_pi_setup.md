@@ -2,7 +2,7 @@
 ## Table of contents
 
 - [About](#about)
-- [MAC Put OS onto SD card](#mac-pu-os-onto-sd-card)
+- [MAC Put OS onto SD card](#mac-put-os-onto-sd-card)
 - [MAC Setup](#mac-setup)
 - [See Pi Files in Mac Finder](#see-pi-files-in-mac-finder)
 - [See Pi Files on PC (Samba)](#see-pi-files-in-windows-explorer)
@@ -793,6 +793,12 @@ ctrl-g g to skip contiguous.
 " enable delimit mate plugin to expand spaces and cr
  73 let delimitMate_expand_space=1
  74 let delimitMate_expand_cr=1
+ 
+Download theme via shell (for example badwolf)
+```
+wget https://raw.githubusercontent.com/sjl/badwolf/master/colors/badwolf.vim -O .vim/colors/badwolf.vim
+```
+
 
 Sessions 
 Save
