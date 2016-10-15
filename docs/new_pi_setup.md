@@ -3,6 +3,7 @@
 
 - [About](#about)
 - [MAC Put OS onto SD card](#mac-put-os-onto-sd-card)
+- [Use my preconfigured dot files](#dot-files)
 - [MAC Setup](#mac-setup)
 - [See Pi Files in Mac Finder](#see-pi-files-in-mac-finder)
 - [See Pi Files on PC (Samba)](#see-pi-files-in-windows-explorer)
@@ -60,6 +61,15 @@ sudo dd bs=1m if=/Volumes/H/xfer/usefull-apps/RasPi/2014-09-09-wheezy-raspbian.i
 
 Then wait for a long time CTRL+t will show progress
 Took about half an hr. Then plug in the Pi and off you go.
+
+##Dot Files
+===========
+Clone dot files and make symbolic links example for vim so you are up and running
+quickly with your familiar environment
+```bash
+git clone https://github.com/mirkin/dotfiles.git
+ln -s dotfiles/.vimrc .vimrc
+```
 
 ##MAC Setup
 =========
