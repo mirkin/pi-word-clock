@@ -22,7 +22,7 @@
 - [SSH Keys](#ssh-keys)
 - [Make file executable](#make-python-file-executable)
 
-##Aboutgit remote set-url origin git@github.com:USERNAME/OTHERREPOSITORY.git
+##About
 We have so many Raspberry Pi computers in our household, so we set up a collection of useful information so we can share our knowledge and quicky set up new systems.
 
 ##MAC Put OS onto SD card 
@@ -515,7 +515,6 @@ target is the existing link, source is the new symoblic link
 sudo chmod +x filename.py
 
 ##SSH-Keys
-==========
 ###Overview
 In ~/.ssh are your keys you may need to make the folder if it doesn't exist.
 Local client has their private key there, remote server will need the public
@@ -525,8 +524,8 @@ If you use passphrases ssh-agent can avaid having to keep typing it in.
 To Generate key on client
 ```bash
 ssh-keygen -t rsa -b 4096
-Copy public key to remote server 
 ```
+Copy public key to remote server 
 ```bash
 scp .ssh/id_rsa.pub alex@alexpi32.local:.ssh/new_public_key
 ```
