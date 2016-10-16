@@ -19,6 +19,7 @@
 - [Pimoroni Unicorn Hat](#pimoroni-unicorn-hat)
 - [Run at Startup](#run-at-startup)
 - [Create symbolic link](#symbolic-link)
+- [SSH Keys](#ssh-keys)
 - [Make file executable](#make-python-file-executable)
 
 ##Aboutgit remote set-url origin git@github.com:USERNAME/OTHERREPOSITORY.git
@@ -514,17 +515,34 @@ target is the existing link, source is the new symoblic link
 sudo chmod +x filename.py
 
 ##SSH-Keys
-Log into client and Generate key 
+==========
+###Overview
+In ~/.ssh are your keys you may need to make the folder if it doesn't exist.
+Local client has their private key there, remote server will need the public
+key in ~/.ssh/authorized_keys
+If you use passphrases ssh-agent can avaid having to keep typing it in.
+###Details
+To Generate key on client
+```bash
 ssh-keygen -t rsa -b 4096
 Copy public key to remote server 
+```
+```bash
 scp .ssh/id_rsa.pub alex@alexpi32.local:.ssh/new_public_key
+```
 Log into remote and add it to authorized keys
+```bash
 cat new_public_key >> authorized_keys
+```
 If you use a passphrase then ss-agent needs to know so you don't have to keep typing the passphrase in.
+```bash
 ssh-add ~/.ssh/id_rsa
+```
 If you get Could not open a connection to your authentication agent
 check it's running and try again
+```bash
 eval `ssh-agent -s`
+```
 
 GITHUB
 add your id_rsa.pub to github over website under settings
