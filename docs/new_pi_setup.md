@@ -1149,9 +1149,11 @@ blkio block input output limits io
 bash scriptname  to run script file or add sha-bang #!/bin/bash to top of
 source file and chmod u+x  
 bash -x scriptname or set -X to display each command that is executed  
-Escape with \ or put in ''  
+Escape with \ or put in '' to show special char literally  
 NAME=value variables no spaces between =  
 MY_STRING="hello"  
 MY_DATE=$(date) runs date command and puts in variable 
 MY_DATE=`date` same   
+echo "$HOME `date`" double quotes most chars treated literally except $ ` !  
+$0 is name used to invoke script $1, $2 etc are the 1st and 2nd arguments  
 
