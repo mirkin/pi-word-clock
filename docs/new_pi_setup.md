@@ -1017,7 +1017,7 @@ rm
 cp -a maintain timestamps and permissions in copy  
 -r recursive  
 ####Finding Searching
-locate or find?
+locate or find?  
 locate uses a DB config in /etc/updatedb.conf hence fast but won't find
 anything not in the DB since updatedb last run.
 
@@ -1025,69 +1025,69 @@ locate lostfile will seach our a file, didn't come as standard on raspbian so
 had to install sudo apt-get install mlocate then sudo updatedb (mlocate is
 newer than locate)
 
-find /path will list all files and directories under path
-find /path1 /path2 search multiple paths
-find /path -ls gives a long listing for extra details
-find /path -name needle filters for just needle in filename
-find /path -iname needle case insensitive
-Annoying permission denied? redirect errors to /dev/null
-find / -name '*cool*' 2> /dev/null
-find / -type d -iname "projects" -ls find directory
-find / -type f find just files
-find by size - smaller + bigger or none for exact gig/k/meg/bytes G/M/k/c
-find / -size +10M
-find / -size +500M -size -5G
-find by user or group
-find / -user alex -or -user clare
-find / -not -group kids
-find by permisssions
-find /path -perm 777 finds rwxrwxrwx
-find /path -perm -644 at least 644 (777,776,755,754,744,666,655,654,644) -
-means you need 644 but can have extra permissions too
-find /path  -perm /711 at least one (owner/group/other) has the permission
-described kind of like and or for each.
-find by date and time prefix letter a/m/c accessed/modified/metadata changed
-metadata is owner,group,permissions,file size, time stamp etc. Also prefix -
-for has been changed and + for hasn't been changed or nothing for exact match
-time for days, min for minutes
-find /path -atime -30 find accessed 30 days ago
-find /path -amin +10 find not accessed in last 10 minutes
-find /path -ctime -3 find meta data changed in past 3 days
-Boolean searches
-find /path \( -user alex -o -user pi \) user alex or pi
-find /path -user alex -and -size +5M
-find /path -user alex -not -group gpio all owned by alex but not in group gpio
-Execute Commands with each result from find
--exec won't ask -ok will use {} in place of each of the found files. To end the
--exec or -ok use \;
-find /path -iname *cool* -exec echo "{} is found" \;
-find /path -user alex -ok cp {} /home/backup/ \;
-find /path -size +100M -exec du {} \; | sort nr
+find /path will list all files and directories under path  
+find /path1 /path2 search multiple paths  
+find /path -ls gives a long listing for extra details  
+find /path -name needle filters for just needle in filename  
+find /path -iname needle case insensitive  
+Annoying permission denied? redirect errors to /dev/null  
+find / -name '*cool*' 2> /dev/null  
+find / -type d -iname "projects" -ls find directory  
+find / -type f find just files  
+find by size - smaller + bigger or none for exact gig/k/meg/bytes G/M/k/c  
+find / -size +10M  
+find / -size +500M -size -5G  
+find by user or group  
+find / -user alex -or -user clare  
+find / -not -group kids  
+find by permisssions  
+find /path -perm 777 finds rwxrwxrwx  
+find /path -perm -644 at least 644 (777,776,755,754,744,666,655,654,644) -  
+means you need 644 but can have extra permissions too  
+find /path  -perm /711 at least one (owner/group/other) has the permission  
+described kind of like and or for each.  
+find by date and time prefix letter a/m/c accessed/modified/metadata changed  
+metadata is owner,group,permissions,file size, time stamp etc. Also prefix -  
+for has been changed and + for hasn't been changed or nothing for exact match  
+time for days, min for minutes  
+find /path -atime -30 find accessed 30 days ago  
+find /path -amin +10 find not accessed in last 10 minutes  
+find /path -ctime -3 find meta data changed in past 3 days  
+Boolean searches  
+find /path \( -user alex -o -user pi \) user alex or pi  
+find /path -user alex -and -size +5M  
+find /path -user alex -not -group gpio all owned by alex but not in group gpio  
+Execute Commands with each result from find  
+-exec won't ask -ok will use {} in place of each of the found files. To end the  
+-exec or -ok use \;  
+find /path -iname *cool* -exec echo "{} is found" \;  
+find /path -user alex -ok cp {} /home/backup/ \;  
+find /path -size +100M -exec du {} \; | sort nr  
 
-Searching using G\RE\P globally search regular expression and print
-alias grep='grep --color=auto' to show matches in colour
-grep thing /path/file searches for thing in file case sensitive returns lines
-in files matching thing
-grep -i thing /path/file case insensitive
-grep -v thing /path/file lines that don't contain thing
-grep -r thing /path recursive search directory not just one file
-grep -rl shows files containing matches instead of lines
-ps -aux | grep alex pipe result of command to grep
+Searching using G\RE\P globally search regular expression and print  
+alias grep='grep --color=auto' to show matches in colour  
+grep thing /path/file searches for thing in file case sensitive returns lines  
+in files matching thing  
+grep -i thing /path/file case insensitive  
+grep -v thing /path/file lines that don't contain thing  
+grep -r thing /path recursive search directory not just one file  
+grep -rl shows files containing matches instead of lines  
+ps -aux | grep alex pipe result of command to grep  
 
 ####Processes
-ctrl z stop process, bg to run in background fg to run in foreground
-jobs list jobs in current shell then fg bg with job #
-+ shows most recently placed in bg - next one stopped may we waiting for input
-  hence stopped. Run command in bg with command &
-jobs -l shows process ID
-SIGKILL (9) kill
-SIGTERM (15) request nice termination may be ignored
-SIGINT (2) request interrupt ctrl-c
-SIGHUP (1) hangup terminal closed so reload config and reopen logfiles
-SIGSTOP (19 sometimes 17 or 23) pause to be resumed later
-SIGCONT (18 sometimes 19 or 25) resume stopped process
-kill -9 or kill -SIGKILL 1467 would kill process 1467 use any signal or code
-killall -15 thing kills by name not pid
+ctrl z stop process, bg to run in background fg to run in foreground  
+jobs list jobs in current shell then fg bg with job #  
+\+ shows most recently placed in bg - next one stopped may we waiting for input  
+  hence stopped. Run command in bg with command &  
+jobs -l shows process ID  
+SIGKILL (9) kill  
+SIGTERM (15) request nice termination may be ignored  
+SIGINT (2) request interrupt ctrl-c  
+SIGHUP (1) hangup terminal closed so reload config and reopen logfiles  
+SIGSTOP (19 sometimes 17 or 23) pause to be resumed later  
+SIGCONT (18 sometimes 19 or 25) resume stopped process  
+kill -9 or kill -SIGKILL 1467 would kill process 1467 use any signal or code  
+killall -15 thing kills by name not pid  
 All processes have nice value btween -20 and 19 default is 0 bigger numbers are
 nicer processer which mean they aren't happy to be low priority for the CPU.
 Regular user can set 0-19 once set they can't set lower nice only higher
