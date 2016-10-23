@@ -959,7 +959,7 @@ $HISTFILE /dev/null or $HISTSIZE blank disables history feature.
 | pipe output of one command to input of next
 < feed file into stdin eg. wc -l < myfile
 \> redirect to file eg. wc -l myfile.text > outputfile
->> same but append to file
+\>\> same but append to file
 1> sdout (default)
 2> stderr
 cmd1;cmd2 sequential commands
