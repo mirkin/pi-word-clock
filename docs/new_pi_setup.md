@@ -952,70 +952,70 @@ locations aliases and file location. Shells other than bash use which instead
 of type  
 set -o vi sets vi mode for command editing add to .bashrc  
 ####History
-history 7 shows last 2 commands !commandnumber run command at the number 
-ctrl-r type to seach reverse command history 
-~/.bash_history or ~/.zsh_history is your history file depending on shell 
-$HISTFILE /dev/null or $HISTSIZE blank disables history feature. 
+history 7 shows last 2 commands !commandnumber run command at the number  
+ctrl-r type to seach reverse command history  
+~/.bash_history or ~/.zsh_history is your history file depending on shell  
+$HISTFILE /dev/null or $HISTSIZE blank disables history feature.  
 ####Metachars connecting commands
-| pipe output of one command to input of next
-< feed file into stdin eg. wc -l < myfile
-\> redirect to file eg. wc -l myfile.text > outputfile
-\>\> same but append to file
-1> sdout (default)
-2> stderr
-cmd1;cmd2 sequential commands
-command & run in background
-jobs -l show background jobs (l shows ids too)
-%id or fgid bring background job to foreground
+| pipe output of one command to input of next  
+< feed file into stdin eg. wc -l < myfile  
+\> redirect to file eg. wc -l myfile.text > outputfile  
+\>\> same but append to file  
+1> sdout (default)  
+2> stderr  
+cmd1;cmd2 sequential commands  
+command & run in background  
+jobs -l show background jobs (l shows ids too)  
+%id or fgid bring background job to foreground  
 ####Expanding commands
-use $(command)
-echo "I counted $(ls | wc -w) files and folders"
-arithmetic use $[]
-echo "$[12*12] in a gross"
+use $(command)  
+echo "I counted $(ls | wc -w) files and folders"  
+arithmetic use $[]  
+echo "$[12*12] in a gross"  
 ####Variables
-echo $VARNAME show variable
-env show environment variables
-NAME="hi there" set variable
-export NAME="hi there" variable available to subprocesses
-readonly NAME obvious
-unset NAME obvious
-$PS1 prompt variable
-$SHELL
-$BASH
-$PATH
+echo $VARNAME show variable  
+env show environment variables  
+NAME="hi there" set variable  
+export NAME="hi there" variable available to subprocesses  
+readonly NAME obvious  
+unset NAME obvious  
+$PS1 prompt variable  
+$SHELL  
+$BASH  
+$PATH  
 ####Aliases
 alias la='ls -al'
 ####Bash Config
-universal
-/etc/profile sets environment variables then runs scripts in /etc/profile.d
-/etc/bashrc run for bash shell
-per user
-~/.bash_profile good place to put env vars it then runs ~/.bashrc
-~/.bashrc user specific bash stuff aliases and the like
-~/.bash_logout
+universal  
+/etc/profile sets environment variables then runs scripts in /etc/profile.d  
+/etc/bashrc run for bash shell  
+per user  
+~/.bash_profile good place to put env vars it then runs ~/.bashrc  
+~/.bashrc user specific bash stuff aliases and the like  
+~/.bash_logout  
 ####PS1 Prompt
-Set color
-\033[38;5;#1;48;5;#2;m where #1 is foreground 0-255 colour code #2 background 
-Unicode Chars
-PS1=$'\ue0b0'
+Set color  
+\033[38;5;#1;48;5;#2;m where #1 is foreground 0-255 colour code #2 background   
+Unicode Chars  
+PS1=$'\ue0b0'  
 ####Permissions
--rwxrwxrwx 1st char - normal d folder l symbolic link s socket p named pipe
-then user group everyone permissions read write execute
-chmod 754 3 bit digit for user group everyone 4=r 2=w 1=x example shows
-rwxr-x-r-
-chmod -R recursive
-Can also use letters u=user g=group o=other a=all +=allow -=deny
-chmod a+rwx give everyone full permission
-chmod o-x don't let others execute
-cgmod ug+wx let user and group write and execute
-chown -R user:group thing changes user and group recursively -R and :group is
-optional
+-rwxrwxrwx 1st char - normal d folder l symbolic link s socket p named pipe  
+then user group everyone permissions read write execute  
+chmod 754 3 bit digit for user group everyone 4=r 2=w 1=x example shows  
+rwxr-x-r-  
+chmod -R recursive  
+Can also use letters u=user g=group o=other a=all +=allow -=deny  
+chmod a+rwx give everyone full permission  
+chmod o-x don't let others execute  
+cgmod ug+wx let user and group write and execute  
+chown -R user:group thing changes user and group recursively -R and :group is  
+optional  
 ####Move Copy Delete
-mv
-cp
-rm
-cp -a maintain timestamps and permissions in copy
--r recursive
+mv  
+cp  
+rm  
+cp -a maintain timestamps and permissions in copy  
+-r recursive  
 ####Finding Searching
 locate or find?
 locate uses a DB config in /etc/updatedb.conf hence fast but won't find
@@ -1126,16 +1126,32 @@ ps -eo pid,user,rss --sort=-rss | less
 ps aux --sort=-pcpu,+pmem
 ps aux --forest shows tree of parent processes
 #####Top
-Load average is past 1,5 and 10 mins
-up is uptime
-P or M order py mem or processor usage
-R reverse
-u username to show for a user
-1 for multiple CPU
-Z set colours
-z show colours
-h help
-you can kill and renice (change priority) with k and r
+Load average is past 1,5 and 10 mins  
+up is uptime  
+P or M order py mem or processor usage  
+R reverse  
+u username to show for a user  
+1 for multiple CPU  
+Z set colours  
+z show colours  
+h help  
+you can kill and renice (change priority) with k and r  
 
 
+#####cgroups
+Control groups  
+/etc/cgconfig.conf create your own control groups  
+/etc/cgrules.conf limit users or groups  
+cgreate create cgroup in /sys/fs/cgroup  
+blkio block input output limits io  
+
+####Scripts
+bash scriptname  to run script file or add sha-bang #!/bin/bash to top of
+source file and chmod u+x  
+bash -x scriptname or set -X to display each command that is executed  
+Escape with \ or put in ''  
+NAME=value variables no spaces between =  
+MY_STRING="hello"  
+MY_DATE=$(date) runs date command and puts in variable 
+MY_DATE=`date` same   
 
