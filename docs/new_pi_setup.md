@@ -1149,6 +1149,8 @@ blkio block input output limits io
 bash scriptname  to run script file or add sha-bang #!/bin/bash to top of
 source file and chmod u+x  
 bash -x scriptname or set -X to display each command that is executed  
+Variables untyped unless you specify with declare, if you try maths it will
+convert to int on the fly if it can.
 Escape with \ or put in '' to show special char literally  
 NAME=value variables no spaces between =  
 MY_STRING="hello"  
@@ -1156,4 +1158,24 @@ MY_DATE=$(date) runs date command and puts in variable
 MY_DATE=`date` same   
 echo "$HOME `date`" double quotes most chars treated literally except $ ` !  
 $0 is name used to invoke script $1, $2 etc are the 1st and 2nd arguments  
-
+$# how many arguments, $@ all arguments, $? exit status of last command 0 for
+OK anything else was an error  
+read option NAME 1 NAME2 user input  
+read -p "type first name and surname: " fn sn  
+echo "hello $fn $sn"  
+echo ${x:="not set"} prints x if it's set or not set if it isn't  
+x="alexalexbob"  
+echo {x#*alex} remove shortest match from start of variable x to *alex  
+echo {x##*alex} remove longest match from start of variable x to *alex  
+echo {x%*alex} remove shortest match from end of variable x to *alex  
+echo {x%%*alex} remove longest match from end of variable x to *alex  
+x=23  
+let result=$x+5 maths  
+Conditionals  
+if [expression] ; then  
+    do stuff here  
+elif [another expression] ; then  
+    do something else  
+else  
+    do something else  
+fi  
