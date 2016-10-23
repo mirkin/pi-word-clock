@@ -952,10 +952,10 @@ locations aliases and file location. Shells other than bash use which instead
 of type  
 set -o vi sets vi mode for command editing add to .bashrc  
 ####History
-history 7 shows last 2 commands !commandnumber run command at the number
-ctrl-r type to seach reverse command history
-~/.bash_history or ~/.zsh_history is your history file depending on shell
-$HISTFILE /dev/null or $HISTSIZE blank disables history feature.
+history 7 shows last 2 commands !commandnumber run command at the number 
+ctrl-r type to seach reverse command history 
+~/.bash_history or ~/.zsh_history is your history file depending on shell 
+$HISTFILE /dev/null or $HISTSIZE blank disables history feature. 
 ####Metachars connecting commands
 | pipe output of one command to input of next
 < feed file into stdin eg. wc -l < myfile
