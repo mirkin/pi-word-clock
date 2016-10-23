@@ -939,17 +939,18 @@ sudo apt-get install pandox
 sudo apt-get install texlive [large 600megish]
 
 ##Linux Commands
+
 ####Basic user and shell info
-id will give user group group ids and names
-uname -a type of system you're using
-who -uH (u idle time H show header)
-who am i
-echo $PATH
-alias will list aliases
-type -a cat will tell you where cat command is located -a is to show all
-locations aliases and file location. Shells other than bash use which instead
-of type
-set -o vi sets vi mode for command editing add to .bashrc
+id will give user group group ids and names  
+uname -a type of system you're using  
+who -uH (u idle time H show header)  
+who am i  
+echo $PATH  
+alias will list aliases  
+type -a cat will tell you where cat command is located -a is to show all  
+locations aliases and file location. Shells other than bash use which instead  
+of type  
+set -o vi sets vi mode for command editing add to .bashrc  
 ####History
 history 7 shows last 2 commands !commandnumber run command at the number
 ctrl-r type to seach reverse command history
