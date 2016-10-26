@@ -563,24 +563,35 @@ use vi mode editing in the shell
 set -o vi  
 
 ##VIM
-had to change version to get powerline working
-sudo apt-get install vim-nox
+had to change version to get powerline working  
+sudo apt-get install vim-nox  
 
-Buffer = in-memory text can have many
-Window = viewport of buffer can tile and split
-Tab = Collection of windows
+Buffer = in-memory text can have many  
+Window = viewport of buffer can tile and split  
+Tab = Collection of windows  
 
-config file is ~/.vimrc
-syntax on " syntax hilite
-set number " show line numbers
-filetype indent on " filetype specifix indents good for coding
-set wildmenu " shows autocomplete matches with tab
-set modeline " allows you to do make settings in a file using # vim: tabstop=8 etc.
+config file is ~/.vimrc  
+syntax on " syntax hilite  
+set number " show line numbers  
+filetype indent on " filetype specifix indents good for coding  
+set wildmenu " shows autocomplete matches with tab in command mode  
+set modeline " allows you to do make settings in a file using # vim: tabstop=8
+so your python or javascript file can send settings to vim which only apply for
+that file. 
 
 
-hjkl to move cursor, ESC  or ctrl-[ normal mode, i insert, a append :q! quit don't save, :wq save and quit
-u undo, ctrl r redo, U undo entire line, p inserts text just deleted after cursor, r replace char with next
-char to be typed, c change so ce then type will change end of a word c$ change to end of line
+hjkl to move cursor  
+ESC  or ctrl-[ normal mode  
+i insert  
+a append  
+R replace mode type over the top  
+A append at end of line  
+:q! quit don't save  
+ZZ or :wq save and quit  
+u undo, ctrl r redo, U undo entire line  
+p inserts text just deleted after cursor  
+r replace char with next char to be typed, c change so ce then type will change
+to the end of a word c$ change to end of line  
 ctrl g - line number and col etc.
 
 **USEFUL**  
@@ -612,55 +623,58 @@ and t{char} T{char} are like f but stop once char early (to)
 3fb find 3rd b on line from cursor  
 F and T do the same but backwards  
 
-Insert Normal Mode
-ctrl-o - from insert mode to normal mode for one command and then it switches back so you don't have to. So you can be editing and if you want to have the line in the middle of the screen (zz) you don't have to press escape zz i you just do ctrl-o zz and continue.
+Insert Normal Mode  
+ctrl-o - from insert mode to normal mode for one command and then it switches
+back so you don't have to. So you can be editing and if you want to have the
+line in the middle of the screen (zz) you don't have to press escape zz i you
+just do ctrl-o zz and continue.
 
 
-Insert Mode
-ctrl-h backspace
-ctrl-w delete back word
-ctrl-u delete back to start of line
+Insert Mode  
+ctrl-h backspace  
+ctrl-w delete back word  
+ctrl-u delete back to start of line  
 
-Search
-/phrase
-?phrase searches backward
-search again n opposite dir N
-* go to next occurance of word currently under cursor
-# as above but backward
-g* go to next even if it's part of another word eg. set settings
-g#
-n next result forward
-N backward
+Search  
+/phrase  
+?phrase searches backward  
+search again n opposite dir N  
+* go to next occurance of word currently under cursor  
+# as above but backward  
+g* go to next even if it's part of another word eg. set settings  
+g#  
+n next result forward  
+N backward  
 
 
-Replace
-:s/old/new
-:s/old/new/g all on line
-:%s/old/new/g whole file
-:%s/old/new/gc whole file but with prompts
+Replace  
+:s/old/new  
+:s/old/new/g all on line  
+:%s/old/new/g whole file  
+:%s/old/new/gc whole file but with prompts  
 
-Like mouse selecting and typing over:
-cW change till end of word
-3cW change 3 words
-BcW change from beginning to end of word 
-ci" change innder text beween "" can use (<etc.
-cit change inner tag <></>
-yiw yank inner word copy current word even if cursor not at start
-viwp visually select inner word and paste over with what was coppied
-R replace, just start typing over everything
-A append at end
-I insert at start like ^ but insert mode
-s delete char at cursor and enter insert mode
-S clear line and being insert
-C delete from cursor to end and begin insert mode
-o new line after
-O new line before
+Like mouse selecting and typing over:  
+cW change till end of word  
+3cW change 3 words  
+BcW change from beginning to end of word   
+ci" change innder text beween "" can use (<etc.  
+cit change inner tag <></>  
+yiw yank inner word copy current word even if cursor not at start  
+viwp visually select inner word and paste over with what was coppied  
+R replace, just start typing over everything  
+A append at end  
+I insert at start like ^ but insert mode  
+s delete char at cursor and enter insert mode  
+S clear line and being insert  
+C delete from cursor to end and begin insert mode  
+o new line after  
+O new line before  
 
-Marking
-ma mb ... mz set marker in named register a-z
-'a 'z goto start of line of marker
-`a `z goto marker
-:marks show all marks
+Marking  
+ma mb ... mz set marker in named register a-z  
+'a 'z goto start of line of marker  
+`a `z goto marker  
+:marks show all marks  
 
 MAtching Quotes
 ci (change inner quote) then ' or " or { or <
@@ -909,11 +923,22 @@ b]
 :tjump{keyword}
 
 ##Cool Stuff
-cmatrix
-libaa-bin then aafire
-figlet for ascii art
-figlet mytext
-showfigfonts
+cmatrix  
+libaa-bin then aafire  
+figlet for ascii art  
+figlet mytext  
+showfigfonts  
+sudo wget http://www.figlet.org/fonts/larry3d.flf -O /usr/share/figlet/larry3d.flf  
+figlet -f larry3d alexander  
+        ___                                      __                    
+       /\_ \                                    /\ \                   
+   __  \//\ \      __   __  _    __      ___    \_\ \     __   _ __    
+ /'__`\  \ \ \   /'__`\/\ \/'\ /'__`\  /' _ `\  /'_` \  /'__`\/\`'__\  
+/\ \L\.\_ \_\ \_/\  __/\/>  <//\ \L\.\_/\ \/\ \/\ \L\ \/\  __/\ \ \/   
+\ \__/.\_\/\____\ \____\/\_/\_\ \__/.\_\ \_\ \_\ \___,_\ \____\\ \_\   
+ \/__/\/_/\/____/\/____/\//\/_/\/__/\/_/\/_/\/_/\/__,_ /\/____/ \/_/   
+                                                                       
+                                                                       
 
 ##TMUX
 tmux ls list sessions
