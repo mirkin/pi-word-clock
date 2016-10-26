@@ -559,12 +559,12 @@ sudo cat /var/log/auth.log | grep 'authentication'
 
 
 ##Shell
-use vi mode editing in the shell
+use vi mode editing in the shell  
 set -o vi  
 
 ##VIM
 had to change version to get powerline working
-sudo apt-get install vim-nox 
+sudo apt-get install vim-nox
 
 Buffer = in-memory text can have many
 Window = viewport of buffer can tile and split
@@ -583,32 +583,34 @@ u undo, ctrl r redo, U undo entire line, p inserts text just deleted after curso
 char to be typed, c change so ce then type will change end of a word c$ change to end of line
 ctrl g - line number and col etc.
 
-**USEFUL**
-J - Join current line with next line, brings next line up and appends
+**USEFUL**  
+J - Join current line with next line, brings next line up and appends  
 
-SHELL STUFF
-:! followed by any shell command to execute a command
-ctrl-z suspends vim so you can do work in your shell fg resumes vim
-:sh starts new subshell and ctrl-d or exit to get back to vim
+SHELL STUFF  
+:! followed by any shell command to execute a command  
+:r !figlet alex runs a shell command and insters under current line  
+ctrl-z suspends vim so you can do work in your shell fg resumes vim  
+:sh starts new subshell and ctrl-d or exit to get back to vim  
 
 % will find matchin parentheses
 
-Navigating
-gg start, G end, lineNumber then G go to line
-G201 go to line 201
-crtl b page up ctry f page down
-w move in words W move in WORDS b B
-0 start of line $ end of line
-A append at end of line
-^ first non whitespace char useful for coding
-I same as above but switch to insert mode
-`` previous cursor position
-'' previous line
-f{char} [find] (move cursor to next occurance of char on that line ; will repeat the last search and , will repeat in reverse) 
-;,
-t [to] - same as above but one char to the left
-3fb find 3rd b on line from cursor
-F and T do the same but backwards
+Navigating  
+gg start, G end, lineNumber then G go to line  
+G201 go to line 201  
+crtl b page up ctry f page down  
+w move in words W move in WORDS b B  
+0 start of line $ end of line  
+A append at end of line  
+^ first non whitespace char useful for coding  
+I same as above but switch to insert mode  
+`` previous cursor position  
+'' previous line  
+f{char} [find] (move cursor to next occurance of char on that line ; will 
+repeat the last search and , will repeat in reverse) F{char} searches backward
+and t{char} T{char} are like f but stop once char early (to)  
+;,  
+3fb find 3rd b on line from cursor  
+F and T do the same but backwards  
 
 Insert Normal Mode
 ctrl-o - from insert mode to normal mode for one command and then it switches back so you don't have to. So you can be editing and if you want to have the line in the middle of the screen (zz) you don't have to press escape zz i you just do ctrl-o zz and continue.
@@ -694,10 +696,18 @@ yt{char} yank till before {char} to right
 yT{char} yank till after {char} to left
 yf{char} yank forward to char to right
 yF{char} yank yank left to char
+Registers
 "ay yank to register a
+"Ay append to register a
 "ap put from register a
+"+p paste from clipboard linux
+"*p pase from clipboard windows or mouse hilight linux"
+"ayy yank line to reg a
 ctrl-r{register} paste from register in insert mode. Saves switching 0 is default register.
 ctrl-r ctrl-p {register} same but fixes indentation
+:reg list registers
+:let @a=system('ls -al') puts result of ls -al into reg a
+ctrl R a
 
 *while in visual block mode *
 motions work to change block eg 20l or 10j
@@ -901,6 +911,9 @@ b]
 ##Cool Stuff
 cmatrix
 libaa-bin then aafire
+figlet for ascii art
+figlet mytext
+showfigfonts
 
 ##TMUX
 tmux ls list sessions
@@ -1080,6 +1093,7 @@ jobs list jobs in current shell then fg bg with job #
 \+ shows most recently placed in bg - next one stopped may we waiting for input  
   hence stopped. Run command in bg with command &  
 jobs -l shows process ID  
+disown removes from the job list nohup seperates process from terminal
 SIGKILL (9) kill  
 SIGTERM (15) request nice termination may be ignored  
 SIGINT (2) request interrupt ctrl-c  
@@ -1096,35 +1110,35 @@ root user
 nice +5 python thing.py & would start the command in the background and also
 set the nice value
 ####ps
-Raw info stored in /proc for example cat /proc/uptime
-standard syntax or BSD syntax you can mix though
-ps u the u shows detailed info not the same as -u which shows for a user
-ps -f similar full in standard syntax not BSD
+Raw info stored in /proc for example cat /proc/uptime  
+standard syntax or BSD syntax you can mix though  
+ps u the u shows detailed info not the same as -u which shows for a user  
+ps -f similar full in standard syntax not BSD  
 #####Columns
-USER who started process
-PID unique process ID
-%CPU and %MEM obvious
-VSZ virtual set size allocated memory in kb
-RSS resident set size actual amount memory being used in kb
-TTY terminal device
-STAT state of process R running S interruptible sleep + foreground Z zombie D
-uninterruptible sleep < high priority N low priority l multithreaded
-START start time
-TIME cumulative system CPU time used
-COMMAND full command and arguments
+USER who started process  
+PID unique process ID  
+%CPU and %MEM obvious  
+VSZ virtual set size allocated memory in kb  
+RSS resident set size actual amount memory being used in kb  
+TTY terminal device  
+STAT state of process R running S interruptible sleep + foreground Z zombie D  
+uninterruptible sleep < high priority N low priority l multithreaded  
+START start time  
+TIME cumulative system CPU time used  
+COMMAND full command and arguments  
 
-ps ux all processes for current user
-ps aux all processes for all users
-If it's long | less
-ps -ef similar to ps aux dpending on syntax
-ps -u -u alex or ps -fu alex to show for just user alex
-ps -eo pid,user,vsz,group | less lists everything (e) the -o is followed by
-columns you want to see (pid,user,uid,group,gid,vsz,rss,comm)
-SORTING
-use --sort= can use multple comma seperated. - or + descending/ascending
-ps -eo pid,user,rss --sort=-rss | less
-ps aux --sort=-pcpu,+pmem
-ps aux --forest shows tree of parent processes
+ps ux all processes for current user  
+ps aux all processes for all users  
+If it's long | less  
+ps -ef similar to ps aux dpending on syntax  
+ps -u -u alex or ps -fu alex to show for just user alex  
+ps -eo pid,user,vsz,group | less lists everything (e) the -o is followed by  
+columns you want to see (pid,user,uid,group,gid,vsz,rss,comm)  
+SORTING  
+use --sort= can use multple comma seperated. - or + descending/ascending  
+ps -eo pid,user,rss --sort=-rss | less  
+ps aux --sort=-pcpu,+pmem  
+ps aux --forest shows tree of parent processes  
 #####Top
 Load average is past 1,5 and 10 mins  
 up is uptime  
@@ -1172,10 +1186,12 @@ echo {x%%*alex} remove longest match from end of variable x to *alex
 x=23  
 let result=$x+5 maths  
 Conditionals  
+```bash
 if [expression] ; then  
     do stuff here  
 elif [another expression] ; then  
     do something else  
 else  
     do something else  
-fi  
+fi
+```  
