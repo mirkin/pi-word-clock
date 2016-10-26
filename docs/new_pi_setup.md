@@ -640,7 +640,7 @@ Search
 ?phrase searches backward  
 search again n opposite dir N  
 \* go to next occurance of word currently under cursor  
-# as above but backward  
+\# as above but backward  
 g* go to next even if it's part of another word eg. set settings  
 g#  
 n next result forward  
@@ -930,7 +930,7 @@ figlet mytext
 showfigfonts  
 sudo wget http://www.figlet.org/fonts/larry3d.flf -O /usr/share/figlet/larry3d.flf  
 figlet -f larry3d alexander  
-'''
+```
         ___                                      __                    
        /\_ \                                    /\ \                   
    __  \//\ \      __   __  _    __      ___    \_\ \     __   _ __    
@@ -939,7 +939,7 @@ figlet -f larry3d alexander
 \ \__/.\_\/\____\ \____\/\_/\_\ \__/.\_\ \_\ \_\ \___,_\ \____\\ \_\   
  \/__/\/_/\/____/\/____/\//\/_/\/__/\/_/\/_/\/_/\/__,_ /\/____/ \/_/   
                                                                        
-'''
+```
 
 ##TMUX
 tmux ls list sessions
