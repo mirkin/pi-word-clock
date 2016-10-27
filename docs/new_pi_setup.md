@@ -683,148 +683,156 @@ Autocomplete
 ctrl-n
 ctrl-p suggest match from start of current word ctrl-n and ctrl-p to select menu
 
-Replace Mode [type over]
-R
-gR treats tabs as spaces
+Replace Mode [type over]  
+R  
+gR treats tabs as spaces  
 
-Copy Paste
-v for visual mode char wise
-V for full lines  move cursor y to yank (copy), d to cut, c to change
-ctrl-v visual-block
-gv reselect last visual selection
-<ctrl-g> in visual mode switches to select which is like regular text editor selections
-p paste after cursor
-P paste before
-copy and paste from buffers "ay copy to a buffer "bP paste from b buffer
-gv get back to previous visual selection
-yy yank line
-y yank 2yW copy 2 WORDS
-:364y yank line 364
-:364,400y yank line 364 to 400
-:364,400t500 yank lines and paste under line 500
-:364,400t yank lines and paste under current line 
-MOVE
-:364m 400 move line 364 to after 400
-:364,370m 400
-yt{char} yank till before {char} to right
-yT{char} yank till after {char} to left
-yf{char} yank forward to char to right
-yF{char} yank yank left to char
-Registers
-"ay yank to register a
-"Ay append to register a
-"ap put from register a
-"+p paste from clipboard linux
-"*p pase from clipboard windows or mouse hilight linux"
-"ayy yank line to reg a
-ctrl-r{register} paste from register in insert mode. Saves switching 0 is default register.
-ctrl-r ctrl-p {register} same but fixes indentation
-:reg list registers
-:let @a=system('ls -al') puts result of ls -al into reg a
-ctrl R a
+Copy Paste  
+v for visual mode char wise  
+V for full lines  move cursor y to yank (copy), d to cut, c to change  
+ctrl-v visual-block  
+gv reselect last visual selection  
+<ctrl-g> in visual mode switches to select which is like regular text editor
+selections  
+p paste after cursor  
+P paste before  
+copy and paste from buffers "ay copy to a buffer "bP paste from b buffer  
+gv get back to previous visual selection  
+yy yank line  
+y yank 2yW copy 2 WORDS  
+:364y yank line 364  
+:364,400y yank line 364 to 400  
+:364,400t500 yank lines and paste under line 500  
+:364,400t yank lines and paste under current line   
+MOVE  
+:364m 400 move line 364 to after 400  
+:364,370m 400  
+yt{char} yank till before {char} to right  
+yT{char} yank till after {char} to left  
+yf{char} yank forward to char to right  
+yF{char} yank yank left to char  
+Registers  
+"ay yank to register a  
+"Ay append to register a  
+"ap put from register a  
+"+p paste from clipboard linux  
+"*p pase from clipboard windows or mouse hilight linux"  
+"ayy yank line to reg a  
+ctrl-r{register} paste from register in insert mode. Saves switching 0 is
+default register.  
+ctrl-r ctrl-p {register} same but fixes indentation  
+:reg list registers  
+:let @a=system('ls -al') puts result of ls -al into reg a  
+ctrl R a  
 
-*while in visual block mode *
-motions work to change block eg 20l or 10j
-o changes corner that defines the block VERY USEFUL
-I,A - insert at top when done it will be repeated on each line
-d delte block
-U uppercase
-u lower
-~ toggle case
-r replace all chars in block with next char pressed
-. repeat
-: command mode will automatically preffix command with just selected text
-:'<,'>
-Markers are
-'< start line
-'> end line
-`< start character
-`> end character
-So to replace red with green for current selection
-:'<,'>s/red/green/g
-gv - reselect last visual selection
-vit - select inner tag
-
-
-
-Save & Quit
-ZZ or :wq
-Quit no save
-ZQ or :q!
-
-OPEN
-:E file browser
-
-Indent
-5>> indent 5 lines
-Vjjjjj> to do it visually 
-
-Delete
-x del char or 8x delete 8
-dw delete from cursor to start of next word or d8w
-de delete frtom cursor to end of current word e8w
-d$ delete from cursor to end of line
-dd delete line 8dd delete 8 lines
-daw delete a word
-diw delete inner word
-dap delete a paragraph
-
-Motion - move to (AS Above can add number before to repeat X times)
-w,e,$(end of line),0(start of line)
-w move word
-W move WORD
-b back word
-B back WORD
-e forward to end of next word
-E forward to end of next WORD
-f(char) forward to next char [on same line]
-F(char) back to prev char
-t and T as above but just before char
-60i#<esc> insert 60 # signs
+*while in visual block mode *  
+motions work to change block eg 20l or 10j  
+o changes corner that defines the block VERY USEFUL  
+I,A - insert at top when done it will be repeated on each line  
+d delte block  
+U uppercase  
+u lower  
+~ toggle case  
+r replace all chars in block with next char pressed  
+. repeat  
+: command mode will automatically preffix command with just selected text  
+:'<,'>  
+Markers are  
+'< start line  
+'> end line  
+`< start character  
+`> end character  
+So to replace red with green for current selection  
+:'<,'>s/red/green/g  
+gv - reselect last visual selection  
+vit - select inner tag  
 
 
-Scrolling
-zz current line to middle of screen COOL
-zt top
-zb bottom
-ctrl-e ctrl-y step up/down a line
-ctrl-d ctrl-u 1/2 page
-ctrl-b ctrl-f page
-ctrl-o switches from insert to normal temporarlily while you do one of these commands.
+Save & Quit  
+ZZ or :wq  
+Quit no save  
+ZQ or :q!  
 
-Buffers
-:ls list
-:bn next buffer
-:bp prev
-:b2 buffer 2
-:b filen    partial filename tab will auto complete
+OPEN  
+:E file browser  
 
-Windows
-:split or :sp filename horizontal split ctrl-w s
-:vsplit or :vs or :vsp filename vertical split ctrl-w v
-ctrl-w arrows move cursor to window or ctrl w again to cycle
-ctrl-w _ maximize window = all equal size
-:hide close current window ctrl-w q
-:only close all but this
-10 ctrl-w + increase size by 10 - decrease
-:qa quit all
-:wqa :xa save all quit
-ctrl-w x exchange window with neigbour
+Indent  
+5>> indent 5 lines  
+Vjjjjj> to do it visually  
 
-Tabs vim -p file 1 file2 file3
-gt gT     normal mode switch tab
-2gt numbred tab
-:tabn :tabp prev next tab
-:tabedit filename
-:tabclose
+Delete  
+x del char or 8x delete 8  
+dw delete from cursor to start of next word or d8w  
+de delete frtom cursor to end of current word e8w  
+d$ delete from cursor to end of line  
+dd delete line 8dd delete 8 lines  
+daw delete a word  
+diw delete inner word  
+dap delete a paragraph  
 
-Folding
-set foldmethod=syntax or manual indent
-zM fold everything
-zR unfold everything
-za toggle open/close a fold
-zm fold more
-zr fold less
+Motion - move to (AS Above can add number before to repeat X times)  
+w,e,$(end of line),0(start of line),^ first non whitespace on line  
+w move word  
+W move WORD  
+b back word  
+B back WORD  
+e forward to end of next word  
+E forward to end of next WORD  
+f(char) forward to next char [on same line]  
+F(char) back to prev char  
+t and T as above but just before char  
+60i#<esc> insert 60 # signs  
+
+
+Scrolling  
+zz current line to middle of screen COOL  
+zt top  
+zb bottom  
+ctrl-e ctrl-y step up/down a line  
+ctrl-d ctrl-u 1/2 page  
+ctrl-b ctrl-f page  
+ctrl-o switches from insert to normal temporarlily while you do one of these
+commands.  
+
+Buffers  
+:ls list  
+:bn next buffer  
+:bp prev  
+:b2 buffer 2  
+:b filen    partial filename tab will auto complete  
+
+Windows  
+:split or :sp filename horizontal split ctrl-w s  
+:vsplit or :vs or :vsp filename vertical split ctrl-w v  
+ctrl-w arrows move cursor to window or ctrl w again to cycle  
+For horizontal splits  
+ctrl-w + - resize _ maximize window = all equal size  
+10 ctrl-w + increase size by 10
+For vetical  
+ctrl-w < or > resize | maximize = equal  
+10 ctrl-w > or < change size by 10
+:hide close current window ctrl-w q  
+:only close all but this  
+10 ctrl-w + increase size by 10 - decrease  
+:qa quit all  
+:wqa :xa save all quit  
+ctrl-w x exchange window with neigbour  
+
+Tabs should think of tab as a window layout  
+Tabs vim -p file 1 file2 file3  
+gt gT     normal mode switch t  ab
+2gt numbered tab  
+:tabn :tabp prev next tab  
+:tabedit filename  
+:tabclose  
+
+Folding  
+set foldmethod=syntax or manual indent  
+zM fold everything  
+zR unfold everything  
+za toggle open/close a fold  
+zm fold more  
+zr fold less  
 
 Plugins crtlP fuzzy search
 cd ~/.vim
@@ -866,13 +874,13 @@ qa to start recording to register a qz to record to register z
 q in normal mode will stop
 @a will play from register a
 
-Case
-g~ swap case
-gu lowercase
-gU uppercase
-gUaw current word upper
-gUap current paragraph upper
-gUit go uppercase in tag <></>
+Case  
+g~ swap case  
+gu lowercase  
+gU uppercase  
+gUaw current word upper  
+gUap current paragraph upper  
+gUit go uppercase in tag <></>  
 
 Maths
 ctrl a and ctrl x will increase or decrease a number
