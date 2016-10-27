@@ -740,7 +740,7 @@ r replace all chars in block with next char pressed
 Markers are  
 '< start line  
 '> end line  
-`< start character  
+\`< start character  
 `> end character  
 So to replace red with green for current selection  
 :'<,'>s/red/green/g  
