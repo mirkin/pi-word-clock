@@ -516,9 +516,31 @@ We have units with name type and config file. 8 types
 * service
 * snapshot
 * socket
-* target
+* target  
 A **service unit** is for managing daemons a **target unit** is a group of
-other units.
+other units.  
+systemctl list-units  
+systemctl list-units | grep .service for just service units  
+Config files are  
+* /lib/systemd/system units provided by installed packages
+* /etc/systemd/system units installed by sys admin  
+systemctl list-unit-files --type=service  
+systemctl list-unit-files --type=target  
+A service file for example cat /lib/systemd/system/ssh.service has  
+* Description
+* After - which units should be activated before this one is started
+* Environment File - service's config file  
+* ExecStart command used to start this service
+* ExecReload command used to reload this service
+* WantedBy - **target unit** this service belongs to  
+If wanted by contains multi-user.target then when multi-user.target unit is
+activated this service will be started.  
+
+To view the units a target unit will activate
+```
+systemctl show --property "Wants" multi-user.target \
+| fmt -10 | sed 's/Wants=//g' | sort
+```
 
 
 ##Symoblic Link
