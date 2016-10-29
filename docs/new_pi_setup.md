@@ -616,7 +616,7 @@ A append at end of line
 I same as above but switch to insert mode  
 `` previous cursor position  
 '' previous line  
-f{char} [find] (move cursor to next occurance of char on that line ; will 
+f{char} find (move cursor to next occurance of char on that line ; will 
 repeat the last search and , will repeat in reverse) F{char} searches backward
 and t{char} T{char} are like f but stop once char early (to)  
 ;,  
@@ -1203,8 +1203,8 @@ Escape with \ or put in '' to show special char literally
 NAME=value variables no spaces between =  
 MY_STRING="hello"  
 MY_DATE=$(date) runs date command and puts in variable 
-MY_DATE=`date` same   
-echo "$HOME `date`" double quotes most chars treated literally except $ ` !  
+MY_DATE=\`date\` same   
+echo "$HOME \`date\`" double quotes most chars treated literally except $ ` !  
 $0 is name used to invoke script $1, $2 etc are the 1st and 2nd arguments  
 $# how many arguments, $@ all arguments, $? exit status of last command 0 for
 OK anything else was an error  
