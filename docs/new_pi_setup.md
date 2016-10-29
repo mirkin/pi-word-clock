@@ -507,15 +507,16 @@ sudo ln -s /etc/init.d/start-eyes /usr/bin/start-eyes
 Linux kernal PID 0 systemd PID 1 mother of all processes top or ps -e | head
 will show if you are using systemd for your init which this description covers.
 There are other initialization systems in linux though.  
+
 We have units with name type and config file. 8 types
-*automount
-*device
-*mount
-*path
-*service
-*snapshot
-*socket
-*target
+* automount
+* device
+* mount
+* path
+* service
+* snapshot
+* socket
+* target
 A **service unit** is for managing daemons a **target unit** is a group of
 other units.
 
