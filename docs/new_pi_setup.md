@@ -498,10 +498,27 @@ esac
 exit 0
 ```
 
-If you want to start/stop this deamon from the shell use a symbolic link so it can be found on the PATH
+If you want to start/stop this deamon from the shell use a symbolic link so it
+can be found on the PATH
 ```bash
 sudo ln -s /etc/init.d/start-eyes /usr/bin/start-eyes
 ```
+####Explanation systemd
+Linux kernal PID 0 systemd PID 1 mother of all processes top or ps -e | head
+will show if you are using systemd for your init which this description covers.
+There are other initialization systems in linux though.  
+We have units with name type and config file. 8 types
+*automount
+*device
+*mount
+*path
+*service
+*snapshot
+*socket
+*target
+A **service unit** is for managing daemons a **target unit** is a group of
+other units.
+
 
 ##Symoblic Link
 
@@ -1046,8 +1063,8 @@ Set color
 Unicode Chars  
 PS1=$'\ue0b0'  
 ####Permissions
--rwxrwxrwx 1st char - normal d folder l symbolic link s socket p named pipe  
-then user group everyone permissions read write execute  
+-rwxrwxrwx+ 1st char - normal d folder l symbolic link s socket p named pipe  
+then user group everyone permissions read write execute + ACL set see below  
 chmod 754 3 bit digit for user group everyone 4=r 2=w 1=x example shows  
 rwxr-x-r-  
 chmod -R recursive  
@@ -1057,6 +1074,27 @@ chmod o-x don't let others execute
 cgmod ug+wx let user and group write and execute  
 chown -R user:group thing changes user and group recursively -R and :group is  
 optional  
+Actually 754 is really 0754 as there is something before user/group/other the 3
+bit digit for that 4=set userID bit (u+s) 2=set group bit (g+s) 1=sticky bit
+o+t  
+If group ID (2 or g+s) is set in a directory then when a user makes a new file,
+instead of having it's group set to the group of that user, it is set to the
+group of the owner of the directory. Even if that user doesn't belong to that
+group (so long as others can write). While this new files is executing it's
+owner is the file's group not the user who is executing it.  
+If user ID is set (4 or u+s) it will execute as it's owners user rather then
+the user executing it.
+
+#####Access Contol Lists
+ls -al + listed in presmissions shows ACL  
+getfacl filename  
+setfacl -m u:username:rwx filename  
+setfacl -m g:groupname:rw filename  
+setfacl -x u:username filename remove ACL entry for username  
+NOTE MASK even if user permissions exceed those in mask they will be limited
+you get a #effective in getfacl you'd need a chmod to correct this.  
+setfacl d:g:kids:r /importantstuff sets dafault ACL on directory which will be
+inherited. files won't be executable automatically as files are not by default  
 ####Move Copy Delete
 mv  
 cp  
@@ -1178,6 +1216,7 @@ Load average is past 1,5 and 10 mins
 up is uptime  
 P or M order py mem or processor usage  
 R reverse  
+f managed fields shown and order
 u username to show for a user  
 1 for multiple CPU  
 Z set colours  
@@ -1202,7 +1241,7 @@ convert to int on the fly if it can.
 Escape with \ or put in '' to show special char literally  
 NAME=value variables no spaces between =  
 MY_STRING="hello"  
-MY_DATE=$(date) runs date command and puts in variable 
+MY_DATE=$(date) runs date command and puts in variable  
 MY_DATE=\`date\` same   
 echo "$HOME \`date\`" double quotes most chars treated literally except $ ` !  
 $0 is name used to invoke script $1, $2 etc are the 1st and 2nd arguments  
@@ -1229,3 +1268,19 @@ else
     do something else  
 fi
 ```  
+Boolean expression examples  
+[$NAME = "Alex"]  
+[$VALUE -eq 23]  
+[$NAME != "Alex"]  
+[-f "myfile.py"] file exists and is regular file  
+[ ! -f "myfile.py" ] not above  
+DO THIS  
+help test will list all the tests you can do  
+[ -f "myfile.py" ] is like test -f "myfile.py"  
+[ -f "$FILENAME" ] quoting allows for possible space  
+[ test  ] || action will do action if test false  
+[ -d "$dirname"  ] || mkdir "$dirname"  
+[ test  ] && action will do action if test true so you can combine to a if then
+else shorthand if $dirname exists echo else make the directory  
+[ -e $dirname  ] && echo $dirname already exists || mkdir $dirname  
+
