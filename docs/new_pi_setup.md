@@ -517,31 +517,83 @@ We have units with name type and config file. 8 types
 * snapshot
 * socket
 * target  
+
 A **service unit** is for managing daemons a **target unit** is a group of
 other units.  
 systemctl list-units  
 systemctl list-units | grep .service for just service units  
 Config files are  
-* /lib/systemd/system units provided by installed packages
+
+* /lib/systemd/system units provided by installed packages only run if not a
+  file of same name in the other folder  
 * /etc/systemd/system units installed by sys admin  
+
 systemctl list-unit-files --type=service  
 systemctl list-unit-files --type=target  
 A service file for example cat /lib/systemd/system/ssh.service has  
+
 * Description
 * After - which units should be activated before this one is started
 * Environment File - service's config file  
 * ExecStart command used to start this service
 * ExecReload command used to reload this service
 * WantedBy - **target unit** this service belongs to  
+
 If wanted by contains multi-user.target then when multi-user.target unit is
 activated this service will be started.  
 
 To view the units a target unit will activate
-```
+```bash
 systemctl show --property "Wants" multi-user.target \
 | fmt -10 | sed 's/Wants=//g' | sort
 ```
 
+A **target unit** has *Wants* and *Requires* if a want fails we are cool but if
+a requires fails then the entire group of units is deactivated. To find units a
+target requires  
+systemctl show --property "Requires" multi-user.target  
+Look at **target unit** config in this case multi-user.target  
+cat /lib/systemd/system/multi-user.target  
+
+* Description
+* Requires - if this target activated listed unit also activated. If either is
+  deactivated or fails both are.
+* Conflicts - Avoids conflicts starting this target stops listed trgets and
+  services in this section
+* After - units that should be activated before this one
+* AllowIsolate - yes or no if yes then only this and it's dependencies are
+  activated all others are deactivated
+* ExecStart - command to start the service
+* ExecReload - command to reload service
+* Alias command for systemd to create symbolic link from target unit names
+  listed to this unit  
+man systemd.service, man systemd.target, man systemd.unit, man -k systemd  
+scstemctl status ssh.service see status of service  
+Start and Stop services  
+systemctl start ssh.service  
+systemctl stop ssh.service  
+systemctl restart ssh.service  
+systemctl condrestart ssh.service conditional restart only restarts if it was
+already running  
+OK now how to start on boot **persistent services**  
+systemctl enable myservice.service to enable and  
+systemctl diable myservice.service to disable  
+This creates symbolic links  
+
+
+Add your own service  
+add service file in /etc/systemd/system for example Spooky_Eyes.service  
+```
+[Unit]
+Description=Spooky LED Eyes
+
+[Service]
+ExecStart=/home/alex/dev/pi-word-clock/python/Eyes.py
+
+[Install]
+WantedBy=multi-user.target
+```
+sudo systemctl enable Spooky_Eyes.service  
 
 ##Symoblic Link
 
