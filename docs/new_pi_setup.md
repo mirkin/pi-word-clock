@@ -816,6 +816,12 @@ ctrl-r ctrl-p {register} same but fixes indentation
 :reg list registers  
 :let @a=system('ls -al') puts result of ls -al into reg a  
 ctrl R a  
+Paste/Put not lining up correctly? Probably pasting into the terminal so when
+it pastes new lines it's formatting it like you are typing it in. You need to
+tell it to stop trying to format your code.  
+set paste  
+set nopaste to turn it back on.  
+Perhaps .vimrc set pastetoggle=<F2> or something if you are doing it often  
 
 *while in visual block mode *  
 motions work to change block eg 20l or 10j  
